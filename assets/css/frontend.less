@@ -1,0 +1,377 @@
+/*--------------------------------------------------------------
+Mixins
+--------------------------------------------------------------*/
+.image-container {
+	img {
+		display: block;
+		width: 100%;
+	}
+}
+
+.center-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/*--------------------------------------------------------------
+Normalize
+--------------------------------------------------------------*/
+body,
+html {
+	height: 100%;
+}
+
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+
+	&#tinymce {
+		display: block;
+		margin: 10px 20px;
+		height: auto;
+	}
+}
+/*--------------------------------------------------------------
+Typography
+--------------------------------------------------------------*/
+body {
+	line-height: 1.5;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+p {
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+}
+
+ol,
+ul {
+	margin-left: 2rem;
+
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	li {
+		&:not(:last-child) {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	ol,
+	ul {
+		margin-top: 0.5rem;
+	}
+}
+
+ul {
+	list-style: disc outside;
+
+	ul {
+		list-style-type: circle;
+
+		ul {
+			list-style-type: square;
+		}
+	}
+}
+
+ol {
+	list-style-position: outside;
+}
+
+dl {
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	dd,
+	dt {
+		&:not(:last-child) {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	dd {
+		margin-left: 2rem;
+	}
+}
+
+address {
+	font-style: italic;
+
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+}
+
+blockquote {
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+}
+
+code,
+pre {
+	font-family: monospace;
+}
+
+pre {
+	-webkit-overflow-scrolling: touch;
+	overflow-x: auto;
+	white-space: pre;
+	word-wrap: normal;
+	font-size: 1rem;
+
+	&:not(:first-child) {
+		margin-top: 1rem;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	code {
+		background-color: transparent;
+		padding: 0;
+	}
+}
+
+code {
+	font-weight: normal;
+	color: #ff3860;
+}
+
+hr {
+	border: none;
+	display: block;
+	height: 2px;
+	margin: 2rem 0;
+}
+/*--------------------------------------------------------------
+Accessibility
+--------------------------------------------------------------*/
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+
+	&:focus {
+		background-color: #f1f1f1;
+		border-radius: 3px;
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+		clip: auto !important;
+		clip-path: none;
+		color: #21759b;
+		display: block;
+		font-size: 0.875rem;
+		font-weight: bold;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000;
+	}
+}
+
+#content[tabindex="-1"]:focus {
+	outline: none;
+}
+
+.js-focus-visible {
+	*:focus:not(.focus-visible) {
+		outline: none;
+	}
+}
+/*--------------------------------------------------------------
+Alignments
+--------------------------------------------------------------*/
+.aligncenter,
+.alignnone {
+	clear: both;
+
+	&:not(:first-child) {
+		margin-top: 2rem;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+}
+
+.aligncenter {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.alignleft,
+.alignright {
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+}
+
+.alignleft {
+	float: left;
+	margin-right: 2rem;
+}
+
+.alignright {
+	float: right;
+	margin-left: 2rem;
+}
+/*--------------------------------------------------------------
+Media
+--------------------------------------------------------------*/
+.gallery {
+	&:not(:first-child) {
+		margin-top: 2rem!important;
+	}
+
+	&-item {
+		margin-top: 0!important;
+		margin-bottom: 2rem;
+		@media only screen and (max-width: 74.99em) {
+			width: 33.33%!important;
+		}
+		@media only screen and (max-width: 47.99em) {
+			width: 100%!important;
+		}
+	}
+
+	&-icon {
+		img {
+			border: none!important;
+			display: block;
+			margin: 0 auto;
+		}
+	}
+}
+
+.wp-caption {
+	max-width: 100%;
+}
+/*--------------------------------------------------------------
+Forms
+--------------------------------------------------------------*/
+input[type='color'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='range'],
+input[type='min'],
+input[type='max'],
+input[type='value'],
+input[type='step'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+textarea {
+	-webkit-appearance: none;
+}
+
+select,
+textarea {
+	max-width: 100%;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	margin-right: 0.5rem;
+}
+/*--------------------------------------------------------------
+Buttons
+--------------------------------------------------------------*/
+.button {
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+	border: none;
+}
+/*--------------------------------------------------------------
+Layout
+--------------------------------------------------------------*/
+.site-container {
+	flex: 1 0 auto;
+}
+/*--------------------------------------------------------------
+Header
+--------------------------------------------------------------*/
+.header-navbar {
+	display: flex;
+}
+
+.header-logo {
+	.image-container;
+}
+/*--------------------------------------------------------------
+Footer
+--------------------------------------------------------------*/
+.site-footer {
+	flex-shrink: 0;
+}
+/*--------------------------------------------------------------
+Loader
+--------------------------------------------------------------*/
+.site-loader {
+	.center-container;
+	position: fixed;
+	z-index: 10000;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	background-color: #fff;
+	animation: hide 0.4s forwards;
+	animation-iteration-count: 1;
+	animation-delay: 3s;
+
+	svg {
+		animation: spin 0.5s linear infinite;
+	}
+}
+@keyframes hide {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+		z-index: -1;
+	}
+}
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
