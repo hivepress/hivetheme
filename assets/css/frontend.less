@@ -13,6 +13,16 @@ Mixins
 	align-items: center;
 	justify-content: center;
 }
+
+.unstyled-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		margin: 0;
+	}
+}
 /*--------------------------------------------------------------
 Normalize
 --------------------------------------------------------------*/
@@ -44,6 +54,27 @@ body {
 	line-height: 1.5;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 2rem;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+
+	a {
+		color: inherit;
+	}
 }
 
 p {
@@ -130,6 +161,7 @@ pre {
 	white-space: pre;
 	word-wrap: normal;
 	font-size: 1rem;
+	padding: 1rem 1.5rem;
 
 	&:not(:first-child) {
 		margin-top: 1rem;
@@ -148,6 +180,7 @@ pre {
 code {
 	font-weight: normal;
 	color: #ff3860;
+	padding: 0.25rem 0.5rem;
 }
 
 hr {
@@ -265,14 +298,68 @@ Media
 			margin: 0 auto;
 		}
 	}
+
+	&-caption {
+		font-size: 0.875rem;
+	}
 }
 
 .wp-caption {
 	max-width: 100%;
+
+	> img,
+	> a > img {
+		width: 100%;
+		display: block;
+	}
+
+	&-text {
+		font-size: 0.875rem;
+		margin-top: 0.5rem;
+	}
+}
+
+.mejs {
+	&-audio &-button {
+		> button {
+			border-radius: 0;
+
+			&::before {
+				display: none;
+			}
+		}
+	}
 }
 /*--------------------------------------------------------------
 Forms
 --------------------------------------------------------------*/
+input[type='color'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='range'],
+input[type='min'],
+input[type='max'],
+input[type='value'],
+input[type='step'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+select,
+textarea {
+	font-family: inherit;
+	box-shadow: none;
+	color: inherit;
+	font-size: 1rem;
+	background-color: transparent;
+}
+
 input[type='color'],
 input[type='date'],
 input[type='datetime'],
@@ -304,6 +391,72 @@ input[type=checkbox],
 input[type=radio] {
 	margin-right: 0.5rem;
 }
+
+fieldset {
+	border: none;
+
+	&:not(:last-child) {
+		margin-bottom: 1.5rem;
+	}
+}
+
+.select2 {
+	&-container--default &-selection {
+		height: auto;
+	}
+
+	&-container--default &-selection--multiple &-selection__rendered {
+		display: block;
+	}
+}
+
+.pac {
+	&-container {
+		font-family: inherit;
+		padding: 1rem 0;
+	}
+
+	&-logo {
+		&::after {
+			margin: 0.5rem 1.5rem 0 0;
+		}
+	}
+
+	&-icon {
+		display: none;
+	}
+
+	&-item {
+		font-size: inherit;
+		line-height: inherit;
+		border: none;
+		padding: 0.25rem 1.5rem;
+		cursor: pointer;
+
+		&:hover {
+			background: none;
+		}
+
+		&-query {
+			font-size: inherit;
+			padding-right: 0.5rem;
+		}
+	}
+}
+/*--------------------------------------------------------------
+Tables
+--------------------------------------------------------------*/
+table {
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+
+	td,
+	th {
+		padding: 0.5rem 0.75rem;
+		vertical-align: top;
+	}
+}
 /*--------------------------------------------------------------
 Buttons
 --------------------------------------------------------------*/
@@ -312,6 +465,18 @@ Buttons
 	display: inline-block;
 	cursor: pointer;
 	border: none;
+	font-size: 1rem;
+	position: relative;
+
+	&.loading,
+	&[data-state=loading] {
+		cursor: default;
+		color: transparent;
+
+		&::after {
+			display: block;
+		}
+	}
 }
 /*--------------------------------------------------------------
 Layout
@@ -330,10 +495,35 @@ Header
 	.image-container;
 }
 /*--------------------------------------------------------------
+Content
+--------------------------------------------------------------*/
+.site-content {
+	position: relative;
+	z-index: 1;
+}
+/*--------------------------------------------------------------
 Footer
 --------------------------------------------------------------*/
 .site-footer {
 	flex-shrink: 0;
+}
+
+.footer-navbar {
+	display: flex;
+	justify-content: space-between;
+
+	@media only screen and (max-width: 47.99em) {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+/*--------------------------------------------------------------
+Modal
+--------------------------------------------------------------*/
+.fancybox {
+	&-content {
+		padding: 2.5rem;
+	}
 }
 /*--------------------------------------------------------------
 Loader
@@ -373,5 +563,104 @@ Loader
 
 	to {
 		transform: rotate(360deg);
+	}
+}
+/*--------------------------------------------------------------
+Widgets
+--------------------------------------------------------------*/
+.widget {
+	&_calendar {
+		table {
+			width: 100%;
+
+			tfoot {
+				td {
+					padding-bottom: 0;
+
+					&:last-child {
+						text-align: right;
+					}
+				}
+			}
+		}
+	}
+}
+/*--------------------------------------------------------------
+Tags
+--------------------------------------------------------------*/
+.tagcloud {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: -.5rem;
+
+	a {
+		font-size: 1rem!important;
+		margin-bottom: 0.5rem;
+
+		&:not(:last-child) {
+			margin-right: 0.5rem;
+		}
+	}
+}
+/*--------------------------------------------------------------
+Comments
+--------------------------------------------------------------*/
+.comment-respond {
+	.logged-in-as {
+		a {
+			&:first-child {
+				color: inherit;
+				pointer-events: none;
+			}
+		}
+	}
+
+	input[type='color'],
+	input[type='date'],
+	input[type='datetime'],
+	input[type='datetime-local'],
+	input[type='email'],
+	input[type='month'],
+	input[type='number'],
+	input[type='password'],
+	input[type='range'],
+	input[type='min'],
+	input[type='max'],
+	input[type='value'],
+	input[type='step'],
+	input[type='search'],
+	input[type='tel'],
+	input[type='text'],
+	input[type='time'],
+	input[type='url'],
+	select,
+	textarea {
+		display: block;
+		width: 100%;
+	}
+
+	.form-submit {
+		margin: 0;
+	}
+}
+/*--------------------------------------------------------------
+Pagination
+--------------------------------------------------------------*/
+.pagination {
+	display: flex;
+	align-items: center;
+
+	&:not(:first-child) {
+		margin-top: 2rem;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+
+	.nav-links,
+	ul {
+		display: flex;
+		align-items: center;
 	}
 }
