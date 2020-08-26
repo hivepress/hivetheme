@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: HiveTheme
- * Description: todo.
+ * Description: A lightweight framework for HivePress themes.
  * Version: 1.0.0
  * Author: HivePress
  * Author URI: https://hivepress.io/
