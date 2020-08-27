@@ -1,0 +1,76 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: HiveTheme\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-27 16:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.4.2; wp-5.5"
+
+#. Description of the plugin
+msgid "A lightweight framework for HivePress themes."
+msgstr ""
+
+#: includes/configs/theme-mods.php:47
+msgid "Body Font"
+msgstr ""
+
+#: includes/configs/theme-mods.php:22
+msgid "Colors"
+msgstr ""
+
+#: includes/configs/theme-mods.php:15
+msgid "Copyright Notice"
+msgstr ""
+
+#: includes/configs/theme-mods.php:38
+msgid "Fonts"
+msgstr ""
+
+#: includes/configs/menu-locations.php:17
+msgid "Footer"
+msgstr ""
+
+#: includes/configs/menu-locations.php:13
+msgid "Header"
+msgstr ""
+
+#: includes/configs/theme-mods.php:42
+msgid "Heading Font"
+msgstr ""
+
+#. Author of the plugin
+msgid "HivePress"
+msgstr ""
+
+#. Name of the plugin
+msgid "HiveTheme"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://hivepress.io/"
+msgstr ""
+
+#. 1: theme name, 2: link URL.
+#: includes/components/class-hivepress.php:92
+#, php-format
+msgid ""
+"If you want to start with the %1$s demo content, please follow <a "
+"href=\"%2$s\" target=\"_blank\">this screencast</a> to import it."
+msgstr ""
+
+#: includes/configs/theme-mods.php:26
+msgid "Primary Color"
+msgstr ""
+
+#: includes/configs/theme-mods.php:31
+msgid "Secondary Color"
+msgstr ""
