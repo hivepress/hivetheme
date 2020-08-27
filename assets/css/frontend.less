@@ -743,7 +743,6 @@ Buttons
 .button--primary,
 .button--secondary {
 	color: #fff;
-	background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,.2));
 
 	&::before {
 		background-color: rgba(255,255,255,.1);
@@ -1634,6 +1633,26 @@ Comments
 		}
 	}
 
+	&__author,
+	&__details {
+		&:not(:last-child) {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	&__author {
+		color: @heading-font-color;
+		font-size: 1.125rem;
+	}
+
+	&__details {
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: -0.5rem;
+		align-items: center;
+		color: @secondary-font-color;
+	}
+
 	&__text {
 		ol,
 		ul {
@@ -1789,6 +1808,20 @@ HivePress
 	}
 
 	&-page {
+		&__header {
+			&:not(:last-child) {
+				@media only screen and (max-width: 74.99em) {
+					margin-bottom: 3rem;
+				}
+			}
+		}
+
+		&__title {
+			&:not(:last-child) {
+				margin-bottom: 1.75rem;
+			}
+		}
+
 		&__topbar {
 			@media only screen and (max-width: 47.99em) {
 				flex-direction: column;
@@ -1955,6 +1988,16 @@ WooCommerce
 		background-color: @secondary-background-color;
 	}
 
+	span.onsale {
+		left: 2rem;
+		top: 2rem;
+		margin: 0;
+		min-height: 0;
+		min-width: 0;
+		font-weight: normal;
+		color: #fff;
+	}
+
 	.star-rating {
 		font-size: 0.875rem;
 
@@ -1966,6 +2009,14 @@ WooCommerce
 	& &-result-count {
 		color: @secondary-font-color;
 		margin: 0.5rem 0 1.5rem;
+	}
+
+	& &-ordering {
+		margin-bottom: 1.5rem;
+
+		select {
+			padding: 0.25rem;
+		}
 	}
 	/*--------------------------------------------------------------
 	Buttons
