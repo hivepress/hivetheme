@@ -67,6 +67,65 @@ Mixins
 	-webkit-font-smoothing: antialiased;
 	text-rendering: auto;
 }
+
+.range-slider {
+	.ui {
+		&-slider-horizontal {
+			height: 5px;
+			border: none;
+			background-color: transparent;
+			margin: 9px 14px 9px 9px;
+
+			&::before {
+				position: absolute;
+				top: 0;
+				right: -14px;
+				bottom: 0;
+				left: -9px;
+				display: block;
+				content: '';
+				border-radius: 9999px;
+				background-color: @border-color;
+			}
+		}
+
+		&-slider-handle {
+			top: -9px;
+			width: 23px;
+			height: 23px;
+			cursor: ew-resize;
+			border: 1px solid rgba(0,0,0,.12);
+			border-radius: 50%;
+			background-color: #fff;
+			box-shadow: @box-shadow;
+
+			&::after,
+			&::before {
+				position: absolute;
+				display: block;
+				content: '';
+			}
+
+			&::before {
+				top: 7px;
+				left: 7px;
+				width: 7px;
+				height: 7px;
+				border: 1px solid rgba(0,0,0,.12);
+				border-top-color: transparent;
+				border-bottom-color: transparent;
+			}
+
+			&::after {
+				top: 7px;
+				left: 10px;
+				width: 0;
+				height: 7px;
+				border-left: 1px solid rgba(0,0,0,.12);
+			}
+		}
+	}
+}
 /*--------------------------------------------------------------
 Normalize
 --------------------------------------------------------------*/
@@ -1062,6 +1121,24 @@ Footer
 	border-top: 1px solid @border-color;
 }
 
+.footer-widgets {
+	padding: 1rem 0;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid @border-color;
+		padding-bottom: 3rem;
+		margin-bottom: 2rem;
+	}
+
+	@media only screen and (max-width: 47.99em) {
+		> div > div {
+			&:not(:last-child) {
+				margin-bottom: 2rem;
+			}
+		}
+	}
+}
+
 .footer-navbar {
 	display: flex;
 	justify-content: space-between;
@@ -1309,6 +1386,73 @@ Widgets
 	&_product_categories {
 		select {
 			width: 100%;
+		}
+	}
+}
+
+.widget_archive,
+.widget_categories,
+.widget_meta,
+.widget_nav_menu,
+.widget_pages,
+.widget_product_categories,
+.widget_recent_entries,
+.wp-block-archives,
+.wp-block-categories,
+.wp-block-latest-posts {
+	li {
+		position: relative;
+		color: @secondary-font-color;
+
+		&::before {
+			.font-icon;
+			color: @icon-color;
+			position: absolute;
+			left: 0;
+			transition: color @animation-duration;
+		}
+
+		a {
+			color: @body-font-color;
+		}
+	}
+}
+
+.widget_pages,
+.widget_recent_entries,
+.wp-block-latest-posts {
+	li {
+		padding-left: 1.35rem;
+
+		&::before {
+			font-size: 16px;
+			content: '\f15b';
+			top: 0.25rem;
+		}
+	}
+}
+
+.wp-block-latest-posts {
+	&__post-date {
+		color: @secondary-font-color;
+		font-size: 0.875rem;
+	}
+}
+
+.widget_archive,
+.widget_categories,
+.widget_meta,
+.widget_nav_menu,
+.widget_product_categories,
+.wp-block-archives,
+.wp-block-categories {
+	li {
+		padding-left: 1rem;
+
+		&::before {
+			font-size: 14px;
+			content: '\f054';
+			top: 0.3rem;
 		}
 	}
 }
@@ -1712,6 +1856,18 @@ Comments
 		justify-content: space-between;
 	}
 
+	[class^='comment-form-'] {
+		display: block;
+		margin-bottom: 1.5rem;
+
+		> label {
+			&:first-child {
+				display: block;
+				margin-bottom: 0.75rem;
+			}
+		}
+	}
+
 	input[type='color'],
 	input[type='date'],
 	input[type='datetime'],
@@ -1880,62 +2036,7 @@ HivePress
 
 	&-field {
 		&--number-range {
-			.ui {
-				&-slider-horizontal {
-					height: 5px;
-					border: none;
-					background-color: transparent;
-					margin: 9px 14px 9px 9px;
-
-					&::before {
-						position: absolute;
-						top: 0;
-						right: -14px;
-						bottom: 0;
-						left: -9px;
-						display: block;
-						content: '';
-						border-radius: 9999px;
-						background-color: @border-color;
-					}
-				}
-
-				&-slider-handle {
-					top: -9px;
-					width: 23px;
-					height: 23px;
-					cursor: ew-resize;
-					border: 1px solid rgba(0,0,0,.12);
-					border-radius: 50%;
-					background-color: #fff;
-					box-shadow: @box-shadow;
-
-					&::after,
-					&::before {
-						position: absolute;
-						display: block;
-						content: '';
-					}
-
-					&::before {
-						top: 7px;
-						left: 7px;
-						width: 7px;
-						height: 7px;
-						border: 1px solid rgba(0,0,0,.12);
-						border-top-color: transparent;
-						border-bottom-color: transparent;
-					}
-
-					&::after {
-						top: 7px;
-						left: 10px;
-						width: 0;
-						height: 7px;
-						border-left: 1px solid rgba(0,0,0,.12);
-					}
-				}
-			}
+			.range-slider;
 		}
 
 		&--location {
@@ -1965,6 +2066,94 @@ HivePress
 		}
 	}
 	/*--------------------------------------------------------------
+	Listings
+	--------------------------------------------------------------*/
+	&-listing {
+		&--view-block &__actions--primary &__action {
+			opacity: 1;
+
+			i {
+				color: @icon-color;
+				transition: color @animation-duration;
+			}
+
+			&:hover,
+			&[data-state=active] {
+				i {
+					color: @icon-color-hover;
+				}
+			}
+		}
+	}
+	/*--------------------------------------------------------------
+	Vendors
+	--------------------------------------------------------------*/
+	&-vendor {
+		&--view-block &__name {
+			&:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+		}
+
+		&--view-block &__registered-date,
+		&--view-page &__registered-date {
+			color: @secondary-font-color;
+		}
+
+		&--view-block &__rating,
+		&--view-block &__registered-date {
+			&:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+
+		&--view-page &__rating,
+		&--view-page &__registered-date {
+			&:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+		}
+
+		&--view-block &__attributes--secondary {
+			margin-bottom: -.25rem;
+
+			&:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+
+		&--view-page &__attributes--secondary {
+			margin-bottom: -.5rem;
+
+			&:not(:last-child) {
+				margin-bottom: 1rem;
+			}
+		}
+
+		&--view-block &__attributes--secondary &__attribute,
+		&--view-page &__attributes--secondary &__attribute {
+			strong {
+				color: @heading-font-color;
+			}
+		}
+
+		&--view-block &__actions--primary &__action {
+			opacity: 1;
+
+			i {
+				color: @icon-color;
+				transition: color @animation-duration;
+			}
+
+			&:hover,
+			&[data-state=active] {
+				i {
+					color: @icon-color-hover;
+				}
+			}
+		}
+	}
+	/*--------------------------------------------------------------
 	Ratings
 	--------------------------------------------------------------*/
 	&-rating {
@@ -1974,6 +2163,58 @@ HivePress
 
 		&__count {
 			opacity: 1;
+			color: @secondary-font-color;
+		}
+	}
+	/*--------------------------------------------------------------
+	Reviews
+	--------------------------------------------------------------*/
+	&-review {
+		&__author {
+			color: @heading-font-color;
+			font-size: 1.125rem;
+		}
+
+		&__created-date,
+		&__rating {
+			&:not(:last-child) {
+				margin-right: 0.75rem;
+			}
+		}
+
+		&__created-date {
+			color: @secondary-font-color;
+		}
+	}
+	/*--------------------------------------------------------------
+	Memberships
+	--------------------------------------------------------------*/
+	&-membership {
+		&--view-block &__expired-date,
+		&--view-block &__name,
+		&--view-block &__status {
+			&:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+		}
+
+		&--view-block &__expired-date {
+			color: @secondary-font-color;
+		}
+	}
+	/*--------------------------------------------------------------
+	Orders
+	--------------------------------------------------------------*/
+	&-order {
+		&--page &__created-date,
+		&--page &__status,
+		&--page &__vendor {
+			&:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+		}
+
+		&--edit-block &__created-date {
 			color: @secondary-font-color;
 		}
 	}
@@ -2019,6 +2260,55 @@ WooCommerce
 		}
 	}
 	/*--------------------------------------------------------------
+	Forms
+	--------------------------------------------------------------*/
+	&,
+	&-page {
+		form {
+			.form-row {
+				padding: 0;
+				margin: 0 0 1.5rem;
+
+				label {
+					margin-bottom: 0.75rem;
+				}
+			}
+
+			fieldset .form-row {
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+	/*--------------------------------------------------------------
+	Tables
+	--------------------------------------------------------------*/
+	table.shop_table {
+		border-collapse: collapse;
+		border: none;
+		border-radius: 0;
+
+		td,
+		th {
+			padding: 0.5rem 0.75rem;
+			border-width: 0 0 1px;
+			border-color: @border-color;
+
+			&:first-child {
+				padding-left: 0;
+			}
+
+			&:last-child {
+				padding-right: 0;
+			}
+		}
+
+		th {
+			font-weight: bold;
+		}
+	}
+	/*--------------------------------------------------------------
 	Buttons
 	--------------------------------------------------------------*/
 	#respond input#submit,
@@ -2027,6 +2317,58 @@ WooCommerce
 	input.button {
 		padding: 0.5rem 1rem;
 		line-height: 1.5;
+
+		&,
+		&:hover {
+			background-color: rgba(0,0,0,0.08);
+			color: @body-font-color;
+		}
+
+		&.alt {
+			&,
+			&:hover {
+				.button--primary;
+			}
+		}
+
+		&.loading {
+			padding-right: 1rem;
+			opacity: 1;
+			color: transparent;
+			cursor: default;
+
+			&::before {
+				opacity: 1;
+				background-color: rgba(255, 255, 255, 0.25);
+			}
+
+			&::after {
+				.font-icon;
+				content: '\f1ce';
+				animation: spin 0.5s linear infinite;
+				top: 50%;
+				right: auto;
+			}
+		}
+	}
+
+	a.button,
+	button.button,
+	input.button {
+		&--secondary {
+			&,
+			&:hover {
+				.button--secondary;
+			}
+		}
+	}
+
+	button[type=submit],
+	input[type=submit] {
+		&,
+		&:hover {
+			.button--primary;
+		}
 	}
 
 	&-cart,
@@ -2036,6 +2378,206 @@ WooCommerce
 			a.checkout-button {
 				.button--large;
 			}
+		}
+	}
+	/*--------------------------------------------------------------
+	Widgets
+	--------------------------------------------------------------*/
+	& &-widget-layered-nav-list &-widget-layered-nav-list {
+		&__item {
+			padding: 0;
+			color: @secondary-font-color;
+		}
+	}
+
+	.widget_price_filter {
+		.price_slider_wrapper {
+			.range-slider;
+		}
+
+		.price_slider_amount {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding-top: 1rem;
+
+			.clear {
+				display: none;
+			}
+		}
+
+		.price_label {
+			color: @secondary-font-color;
+		}
+	}
+
+	& .widget_rating_filter {
+		ul {
+			li {
+				padding: 0;
+				color: @secondary-font-color;
+
+				a {
+					color: inherit;
+				}
+			}
+		}
+	}
+
+	ul.cart_list,
+	ul.product_list_widget {
+		li {
+			.star-rating {
+				margin-top: 0.25rem;
+			}
+		}
+	}
+
+	ul.product_list_widget {
+		li {
+			padding: 0;
+			color: @secondary-font-color;
+
+			&:not(:last-child) {
+				margin-bottom: 1rem;
+			}
+
+			.product-title {
+				color: @heading-font-color;
+				transition: color @animation-duration;
+				line-height: 1.15;
+
+				&:hover {
+					color: @heading-font-color-hover;
+				}
+			}
+
+			.amount {
+				font-size: 0.875rem;
+			}
+
+			img {
+				width: 2.875rem;
+				margin-left: 1rem;
+			}
+
+			ins {
+				text-decoration: none;
+			}
+		}
+	}
+	/*--------------------------------------------------------------
+	Products
+	--------------------------------------------------------------*/
+	&,
+	&-page {
+		ul.products {
+			li.product {
+				margin-bottom: 2rem;
+
+				.add_to_cart_button {
+					margin-right: 0.75rem;
+				}
+
+				a {
+					img {
+						margin-bottom: 0.75rem;
+					}
+				}
+
+				.price {
+					font-size: 1.125rem;
+					color: inherit;
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+
+					ins {
+						text-decoration: none;
+						font-weight: normal;
+					}
+				}
+
+				.woocommerce-loop-product {
+					&__link {
+						color: inherit;
+					}
+
+					&__title {
+						font-size: 1.3125rem;
+					}
+				}
+
+				.onsale {
+					margin: 0;
+					top: 3rem;
+					right: 3rem;
+				}
+			}
+		}
+	}
+
+	div.product {
+		.product_meta {
+			> span {
+				display: block;
+				font-weight: 600;
+				color: @heading-font-color;
+
+				&:not(:last-child) {
+					margin-bottom: 0.5rem;
+				}
+
+				a,
+				span {
+					font-weight: normal;
+				}
+
+				span {
+					color: @body-font-color;
+				}
+			}
+		}
+	}
+	/*--------------------------------------------------------------
+	Checkout
+	--------------------------------------------------------------*/
+	#add_payment_method,
+	&-cart,
+	&-checkout {
+		table.cart {
+			img {
+				display: block;
+			}
+		}
+
+		#payment {
+			background-color: @secondary-background-color;
+
+			ul.payment_methods {
+				border-color: @border-color;
+			}
+
+			div.payment_box {
+				background-color: @secondary-background-color;
+
+				&::before {
+					border-bottom-color: @secondary-background-color;
+					top: -1em;
+				}
+			}
+		}
+	}
+	/*--------------------------------------------------------------
+	Account
+	--------------------------------------------------------------*/
+	&-MyAccount-navigation {
+		.widget_nav_menu;
+
+		ul {
+			margin-left: 0;
+			list-style: none;
 		}
 	}
 	/*--------------------------------------------------------------
