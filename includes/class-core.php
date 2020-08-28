@@ -131,29 +131,25 @@ final class Core {
 	protected function setup_extensions() {
 
 		// Get directories.
-		$dirs = array_unique(
-			[
-				dirname( HT_FILE ),
-				get_template_directory(),
-				get_stylesheet_directory(),
-			]
-		);
+		$core_dir   = dirname( HT_FILE );
+		$parent_dir = get_template_directory();
+		$child_dir  = get_stylesheet_directory();
 
 		// Filter extensions.
-		$extensions = apply_filters( 'hivetheme/v1/extensions', $dirs );
+		$extensions = apply_filters( 'hivetheme/v1/extensions', array_unique( [ $core_dir, $parent_dir, $child_dir ] ) );
 
 		foreach ( $extensions as $name => $dir ) {
 			if ( is_array( $dir ) ) {
 
 				// Add extension.
 				$this->extensions[ $name ] = $dir;
-			} elseif ( dirname( HT_FILE ) === $dir ) {
+			} elseif ( $dir === $core_dir ) {
 
-				// Get URL.
+				// Get core URL.
 				$url = rtrim( plugin_dir_url( HT_FILE ), '/' );
 
-				if ( strpos( $dir, get_template_directory() ) === 0 ) {
-					$url = get_template_directory_uri() . substr( $dir, strlen( get_template_directory() ) );
+				if ( strpos( $dir, $parent_dir ) === 0 ) {
+					$url = get_template_directory_uri() . substr( $dir, strlen( $parent_dir ) );
 				}
 
 				// Get file data.
@@ -179,7 +175,7 @@ final class Core {
 				$filepath = $dir . '/style.css';
 
 				// Get extension name.
-				$name = str_replace( '-', '_', $dirname );
+				$name = $dir === $parent_dir ? 'parent' : 'child';
 
 				if ( file_exists( $filepath ) ) {
 
