@@ -4,12 +4,12 @@ Variables
 @heading-font-color: rgba(0,0,0,0.8);
 @heading-font-color-hover: rgba(0,0,0,1);
 @body-font-color: rgba(0,0,0,0.6);
-@primary-font-color: #000;
-@primary-background-color: #000;
+@primary-font-color: #ffc107;
+@primary-background-color: #ffc107;
 @secondary-font-color: rgba(0,0,0,0.4);
 @secondary-background-color: rgba(0,0,0,0.03);
-@ternary-font-color: #000;
-@ternary-background-color: #000;
+@ternary-font-color: #15cd72;
+@ternary-background-color: #15cd72;
 @border-color: rgba(0,0,0,.06);
 @border-color-hover: rgba(0,0,0,0.1);
 @icon-color: rgba(0,0,0,0.15);
@@ -637,6 +637,8 @@ fieldset {
 	&-container {
 		font-family: inherit;
 		padding: 1rem 0;
+		box-shadow: @box-shadow;
+		border: 1px solid @border-color;
 	}
 
 	&-logo {
@@ -920,6 +922,12 @@ Header
 					transition: color @animation-duration;
 				}
 
+				&.active > a,
+				&.current-menu-item > a,
+				a:hover {
+					color: @primary-font-color;
+				}
+
 				ul {
 					display: none;
 					position: absolute;
@@ -930,6 +938,8 @@ Header
 					align-self: stretch;
 					padding: 1rem 0;
 					background-color: #fff;
+					border: 1px solid @border-color;
+					box-shadow: @box-shadow;
 
 					li {
 						padding: 0.25rem 1.5rem;
@@ -937,6 +947,7 @@ Header
 						ul {
 							left: 100%;
 							top: -1rem;
+							margin-top: -1px;
 						}
 					}
 				}
@@ -965,11 +976,30 @@ Header
 					content: '\f107';
 					margin-left: 0.5rem;
 				}
+
+				&.current-menu-item {
+					&::before {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						display: block;
+						height: 3px;
+						content: '';
+						background-color: @primary-background-color;
+					}
+				}
 			}
 
 			&.wrap > li {
 				padding-top: 0.25rem;
 				padding-bottom: 0.25rem;
+
+				&.current-menu-item {
+					&::before {
+						display: none;
+					}
+				}
 			}
 		}
 	}
@@ -1074,6 +1104,19 @@ Header
 
 				&:not(:last-child) {
 					margin-bottom: 0;
+				}
+
+				&.current-menu-item {
+					&::before {
+						position: absolute;
+						top: 0;
+						left: -2rem;
+						bottom: 0;
+						display: block;
+						width: 3px;
+						content: '';
+						background-color: @primary-background-color;
+					}
 				}
 
 				&.menu-item-has-children {
@@ -1463,6 +1506,21 @@ Widgets
 
 		a {
 			color: @body-font-color;
+			transition: color @animation-duration;
+
+			&:hover {
+				color: @primary-font-color;
+			}
+		}
+
+		&.current-cat,
+		&.current-menu-item,
+		&.is-active,
+		&:hover {
+			&::before,
+			> a {
+				color: @primary-font-color;
+			}
 		}
 	}
 }
@@ -1732,6 +1790,12 @@ Blocks
 			}
 		}
 	}
+
+	&-file {
+		& &__button {
+			background-color: @ternary-background-color;
+		}
+	}
 }
 
 .editor-post-title {
@@ -1757,6 +1821,16 @@ Pages
 Posts
 --------------------------------------------------------------*/
 .post {
+	&--archive {
+		margin-bottom: 2rem;
+	}
+
+	&--archive &__header {
+		&:not(:last-child) {
+			margin-bottom: 1rem;
+		}
+	}
+
 	&__title {
 		word-wrap: break-word;
 		margin-top: 0;
@@ -1768,6 +1842,25 @@ Posts
 
 	&--archive &__image {
 		.image-container;
+	}
+
+	&__categories,
+	&__details {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	&__categories {
+		margin-bottom: -.5rem;
+
+		a {
+			margin-bottom: 0.5rem;
+
+			&:not(:last-child) {
+				margin-right: 0.5rem;
+			}
+		}
 	}
 }
 /*--------------------------------------------------------------
@@ -1790,6 +1883,16 @@ Tags
 /*--------------------------------------------------------------
 Comments
 --------------------------------------------------------------*/
+#comments {
+	&:not(:first-child) {
+		margin-top: 4rem;
+
+		@media only screen and (max-width: 47.99em) {
+			margin-top: 3rem;
+		}
+	}
+}
+
 .comments {
 	&:not(:last-child) {
 		margin-bottom: 2rem;
@@ -1804,13 +1907,23 @@ Comments
 			&:not(:last-child) {
 				margin-bottom: 2rem;
 			}
+
+			ul {
+				padding-left: 5.5rem;
+
+				@media only screen and (max-width: 47.99em) {
+					padding-left: 0;
+				}
+
+				ul ul ul {
+					padding-left: 0;
+				}
+			}
 		}
 	}
 }
 
 .comment {
-	padding: 0 2rem 2rem 0;
-
 	&__header {
 		display: flex;
 		align-items: center;
@@ -1867,6 +1980,10 @@ Comments
 			color: inherit;
 			display: flex;
 			align-items: center;
+
+			&:hover {
+				color: @primary-font-color;
+			}
 
 			i {
 				font-size: 12px;
@@ -1935,6 +2052,10 @@ Comments
 
 		a {
 			color: @icon-color;
+
+			&:hover {
+				color: @primary-font-color;
+			}
 
 			i {
 				font-size: 18px;
@@ -2010,6 +2131,66 @@ Pagination
 		display: flex;
 		align-items: center;
 	}
+
+	> span,
+	.nav-links > a,
+	.nav-links > span,
+	> a,
+	ul li a,
+	ul li span.current,
+	ul li span.dots {
+		.center-container;
+		color: inherit;
+
+		&.page-numbers:not(.prev):not(.next),
+		&:not(.prev):not(.next) {
+			font-size: 1.125rem;
+		}
+
+		&.next,
+		&.prev {
+			font-size: 0;
+			color: @icon-color;
+
+			&::before {
+				.font-icon;
+				font-size: 16px;
+			}
+
+			i {
+				display: none;
+			}
+		}
+
+		&.prev::before {
+			content: '\f053';
+		}
+
+		&.next::before {
+			content: '\f054';
+		}
+	}
+
+	> span,
+	.nav-links > a,
+	.nav-links > span,
+	> a,
+	ul li {
+		&.page-numbers:not(:last-child),
+		&:not(:last-child) {
+			margin-right: 0.5rem;
+		}
+	}
+
+	.nav-links > a,
+	> a,
+	ul li a {
+		transition: color @animation-duration;
+
+		&:hover {
+			color: @primary-font-color;
+		}
+	}
 }
 /*--------------------------------------------------------------
 HivePress
@@ -2075,6 +2256,28 @@ HivePress
 
 		&--tabbed {
 			border-color: @border-color;
+		}
+
+		&--tabbed &__item {
+			&--current {
+				&::before {
+					background-color: @primary-background-color;
+				}
+			}
+
+			a {
+				color: inherit;
+				transition: color @animation-duration;
+
+				&:hover {
+					color: @primary-font-color;
+				}
+			}
+
+			&--current a {
+				color: @primary-font-color;
+				font-weight: normal;
+			}
 		}
 	}
 
@@ -2397,6 +2600,8 @@ HivePress
 	--------------------------------------------------------------*/
 	&-listing-package {
 		&--view-block &__price {
+			color: @ternary-font-color;
+
 			del {
 				color: @secondary-font-color;
 			}
@@ -2458,8 +2663,17 @@ HivePress
 			}
 		}
 
+		&--view-block &__attributes--secondary &__attribute {
+			font-size: 0.875rem;
+			margin-bottom: 0.25rem;
+		}
+
 		&--view-page &__attributes--secondary &__attribute {
 			margin-bottom: 0.5rem;
+		}
+
+		&--view-block &__attributes--primary &__attribute {
+			font-size: 1.125rem;
 		}
 
 		&--view-block &__actions--primary &__action {
@@ -2475,6 +2689,26 @@ HivePress
 				i {
 					color: @icon-color-hover;
 				}
+			}
+		}
+
+		&__actions--secondary &__balance {
+			padding: 0;
+			background-color: transparent;
+
+			&:not(:last-child) {
+				margin-bottom: 0.25rem;
+			}
+
+			strong {
+				color: @secondary-font-color;
+				font-weight: normal;
+				margin-bottom: 0.25rem;
+			}
+
+			span {
+				font-size: 1.5625rem;
+				color: @heading-font-color;
 			}
 		}
 	}
@@ -2512,8 +2746,73 @@ HivePress
 		}
 	}
 	/*--------------------------------------------------------------
+	Messages
+	--------------------------------------------------------------*/
+	&-message {
+		&--view-block {
+			background-color: @secondary-background-color;
+			padding: 1.25rem 1.5rem;
+			position: relative;
+		}
+
+		&--view-block &__details {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		&--view-block &__sender,
+		&--view-block &__sent-date {
+			&:not(:last-child) {
+				margin-bottom: 0.25rem;
+			}
+		}
+
+		&--view-block &__sender {
+			font-size: 1.125rem;
+			color: @heading-font-color;
+
+			&::before {
+				border: 8px solid transparent;
+				position: absolute;
+				width: 0;
+				height: 0;
+				content: '';
+				display: block;
+				top: 1.6rem;
+				left: -16px;
+				border-right-color: @secondary-background-color;
+			}
+
+			&--current::before {
+				left: auto;
+				border-right-color: transparent;
+				right: -16px;
+				border-left-color: @secondary-background-color;
+			}
+		}
+
+		&--view-block &__sent-date,
+		&--thread-block &__sent-date {
+			color: @secondary-font-color;
+		}
+	}
+	/*--------------------------------------------------------------
 	Memberships
 	--------------------------------------------------------------*/
+	&-membership-plan {
+		&--view-block &__price {
+			color: @ternary-font-color;
+
+			del {
+				color: @secondary-font-color;
+			}
+		}
+
+		&--view-block &__select-button {
+			.button--large;
+		}
+	}
+
 	&-membership {
 		&--view-block &__expired-date,
 		&--view-block &__name,
@@ -2562,6 +2861,7 @@ WooCommerce
 		min-width: 0;
 		font-weight: normal;
 		color: #fff;
+		background-color: @ternary-background-color;
 	}
 
 	.star-rating {
