@@ -4,8 +4,12 @@ Variables
 @heading-font-color: rgba(0,0,0,0.8);
 @heading-font-color-hover: rgba(0,0,0,1);
 @body-font-color: rgba(0,0,0,0.6);
+@primary-font-color: #000;
+@primary-background-color: #000;
 @secondary-font-color: rgba(0,0,0,0.4);
 @secondary-background-color: rgba(0,0,0,0.03);
+@ternary-font-color: #000;
+@ternary-background-color: #000;
 @border-color: rgba(0,0,0,.06);
 @border-color-hover: rgba(0,0,0,0.1);
 @icon-color: rgba(0,0,0,0.15);
@@ -87,6 +91,10 @@ Mixins
 				border-radius: 9999px;
 				background-color: @border-color;
 			}
+		}
+
+		&-slider-range {
+			background-color: @ternary-background-color;
 		}
 
 		&-slider-handle {
@@ -302,7 +310,7 @@ address {
 blockquote {
 	padding: 1rem 0 1rem 1.5rem;
 	font-size: 1.125rem;
-	border-left: 3px solid @border-color;
+	border-left: 3px solid @primary-background-color;
 
 	&:not(:last-child) {
 		margin-bottom: 1rem;
@@ -820,6 +828,14 @@ Buttons
 	}
 }
 
+.button--primary {
+	background-color: @primary-background-color;
+}
+
+.button--secondary {
+	background-color: @ternary-background-color;
+}
+
 button[type=submit],
 input[type=submit] {
 	.button;
@@ -855,16 +871,30 @@ Header
 	justify-content: space-between;
 	padding: 1rem 2rem;
 
+	&:last-child {
+		border-bottom: 1px solid @border-color;
+	}
+
 	&__end,
 	&__start {
 		display: flex;
 		align-items: center;
 	}
 
+	&__start {
+		margin-right: 2rem;
+	}
+
 	&__menu {
 		display: flex;
+		align-self: stretch;
+		margin: -1rem -1rem -1rem 0;
 		@media only screen and (max-width: 74.99em) {
 			display: none;
+		}
+
+		&:not(:last-child) {
+			margin-right: 1rem;
 		}
 
 		ul {
@@ -935,6 +965,11 @@ Header
 					content: '\f107';
 					margin-left: 0.5rem;
 				}
+			}
+
+			&.wrap > li {
+				padding-top: 0.25rem;
+				padding-bottom: 0.25rem;
 			}
 		}
 	}
@@ -1046,6 +1081,11 @@ Header
 						top: 0.5rem;
 					}
 				}
+
+				> a {
+					font-size: 1.125rem;
+					color: @heading-font-color;
+				}
 			}
 		}
 	}
@@ -1090,6 +1130,15 @@ Header
 	&__content {
 		position: relative;
 		z-index: 1;
+
+		h1 {
+			@media only screen and (min-width: 48em) {
+				font-size: 2.625rem;
+			}
+			@media only screen and (min-width: 75em) {
+				font-size: 3rem;
+			}
+		}
 	}
 }
 /*--------------------------------------------------------------
@@ -1522,11 +1571,11 @@ Blocks
 	&-quote {
 		margin: 0;
 		padding-left: 1.5rem;
-		border-left: 3px solid @border-color;
+		border-left: 3px solid @primary-background-color;
 
 		&[style*="text-align:right"] {
 			padding-right: 1.5rem;
-			border-right: 3px solid @border-color;
+			border-right: 3px solid @primary-background-color;
 		}
 
 		&:not(:first-child) {
@@ -1716,6 +1765,10 @@ Posts
 	&__text {
 		.clear-container;
 	}
+
+	&--archive &__image {
+		.image-container;
+	}
 }
 /*--------------------------------------------------------------
 Tags
@@ -1777,6 +1830,12 @@ Comments
 		}
 	}
 
+	&.bypostauthor &__image {
+		img {
+			border: 2px solid @primary-background-color;
+		}
+	}
+
 	&__author,
 	&__details {
 		&:not(:last-child) {
@@ -1795,6 +1854,25 @@ Comments
 		margin-bottom: -0.5rem;
 		align-items: center;
 		color: @secondary-font-color;
+
+		> * {
+			margin-bottom: 0.5rem;
+
+			&:not(:last-child) {
+				margin-right: 0.75rem;
+			}
+		}
+
+		a {
+			color: inherit;
+			display: flex;
+			align-items: center;
+
+			i {
+				font-size: 12px;
+				margin-right: 0.4rem;
+			}
+		}
 	}
 
 	&__text {
@@ -1854,6 +1932,15 @@ Comments
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
+		a {
+			color: @icon-color;
+
+			i {
+				font-size: 18px;
+				display: block;
+			}
+		}
 	}
 
 	[class^='comment-form-'] {
@@ -1928,6 +2015,23 @@ Pagination
 HivePress
 --------------------------------------------------------------*/
 .hp {
+	&-link {
+		transition: color @animation-duration;
+
+		&:hover {
+			color: @primary-font-color;
+		}
+
+		i {
+			color: @icon-color;
+			transition: color @animation-duration;
+		}
+
+		&:hover i {
+			color: @primary-font-color;
+		}
+	}
+
 	&-meta {
 		color: @secondary-font-color;
 	}
@@ -1944,6 +2048,31 @@ HivePress
 	}
 
 	&-menu {
+		&--site-header {
+			button {
+				@media only screen and (max-width: 47.99em) {
+					padding: 0.25rem 0.56rem;
+				}
+
+				i:first-child {
+					margin-right: 0.5rem;
+				}
+			}
+
+			a,
+			button {
+				@media only screen and (max-width: 47.99em) {
+					span {
+						display: none;
+					}
+
+					i:first-child {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+
 		&--tabbed {
 			border-color: @border-color;
 		}
@@ -2055,6 +2184,87 @@ HivePress
 			opacity: 0;
 			position: absolute;
 			margin: 0;
+
+			& + span {
+				position: relative;
+				display: inline-block;
+				cursor: pointer;
+
+				&::after,
+				&::before {
+					display: block;
+					content: '';
+					position: absolute;
+				}
+
+				&::before {
+					width: 18px;
+					height: 18px;
+					transition: background-color @animation-duration, border-color @animation-duration;
+					border: 2px solid @border-color;
+					left: 0;
+					top: 3px;
+				}
+
+				&::after {
+					top: 7px;
+					left: 4px;
+					transition: opacity @animation-duration;
+					opacity: 0;
+				}
+			}
+
+			&:checked + span {
+				&::before {
+					border-color: @ternary-background-color;
+				}
+
+				&::after {
+					opacity: 1;
+				}
+			}
+		}
+
+		input[type=checkbox] {
+			& + span {
+				padding-left: 1.75rem;
+
+				&::before {
+					border-radius: 3px;
+				}
+
+				&::after {
+					width: 10px;
+					height: 6px;
+					transform: rotate(-45deg);
+					border: 2px solid #fff;
+					border-top-width: 0;
+					border-right-width: 0;
+				}
+			}
+
+			&:checked + span {
+				&::before {
+					background-color: @ternary-background-color;
+				}
+			}
+		}
+
+		input[type=radio] {
+			& + span {
+				padding-left: 1.65rem;
+
+				&::before {
+					border-radius: 50%;
+				}
+
+				&::after {
+					width: 10px;
+					height: 10px;
+					border-radius: 50%;
+					background-color: @ternary-background-color;
+				}
+			}
 		}
 
 		&__label {
@@ -2069,6 +2279,92 @@ HivePress
 	Listings
 	--------------------------------------------------------------*/
 	&-listing {
+		&__images {
+			&-slider {
+				overflow: hidden;
+			}
+		}
+
+		&__location {
+			i {
+				color: @ternary-background-color;
+			}
+		}
+
+		&--view-page &__title {
+			&:not(:last-child) {
+				margin-bottom: 1.25rem;
+			}
+		}
+
+		&--view-block &__details,
+		&--view-block &__title {
+			&:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+		}
+
+		&--view-block &__created-date,
+		&--view-block &__location,
+		&--view-block &__rating {
+			&:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+
+		&--view-page &__created-date,
+		&--view-page &__location,
+		&--view-page &__rating {
+			&:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+		}
+
+		&--view-block &__created-date,
+		&--view-page &__created-date {
+			color: @secondary-font-color;
+		}
+
+		&--edit-block &__created-date {
+			color: @secondary-font-color;
+		}
+
+		&--view-block &__attributes--secondary {
+			margin-bottom: -.25rem;
+
+			&:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+
+		&--view-page &__attributes--secondary {
+			margin-bottom: -.5rem;
+
+			&:not(:last-child) {
+				margin-bottom: 1rem;
+			}
+		}
+
+		&--view-block &__attributes--secondary &__attribute,
+		&--view-page &__attributes--secondary &__attribute {
+			strong {
+				color: @heading-font-color;
+			}
+		}
+
+		&--view-block &__attributes--secondary &__attribute {
+			font-size: 0.875rem;
+			margin-bottom: 0.25rem;
+		}
+
+		&--view-page &__attributes--secondary &__attribute {
+			margin-bottom: 0.5rem;
+		}
+
+		&--view-block &__attributes--primary &__attribute {
+			font-size: 1.125rem;
+		}
+
 		&--view-block &__actions--primary &__action {
 			opacity: 1;
 
@@ -2083,6 +2379,31 @@ HivePress
 					color: @icon-color-hover;
 				}
 			}
+		}
+
+		&--view-block &__actions--primary &__action,
+		&--view-block &__actions--secondary &__action,
+		&--view-page &__actions--primary &__action,
+		&--view-page &__actions--secondary &__action {
+			&--favorite[data-state=active] {
+				i {
+					color: #ff5a5f;
+				}
+			}
+		}
+	}
+	/*--------------------------------------------------------------
+	Listing Packages
+	--------------------------------------------------------------*/
+	&-listing-package {
+		&--view-block &__price {
+			del {
+				color: @secondary-font-color;
+			}
+		}
+
+		&--view-block &__select-button {
+			.button--large;
 		}
 	}
 	/*--------------------------------------------------------------
@@ -2135,6 +2456,10 @@ HivePress
 			strong {
 				color: @heading-font-color;
 			}
+		}
+
+		&--view-page &__attributes--secondary &__attribute {
+			margin-bottom: 0.5rem;
 		}
 
 		&--view-block &__actions--primary &__action {
