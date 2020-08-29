@@ -118,4 +118,14 @@ final class Template extends Component {
 	public function render_template( $path, $context = [] ) {
 		return $this->render_part( $path, $context );
 	}
+
+	/**
+	 * Renders header.
+	 *
+	 * @return string
+	 * @deprecated Since version 1.2.0
+	 */
+	public function render_header() {
+		return apply_filters( 'hivetheme/v1/areas/site_hero', '' );
+	}
 }

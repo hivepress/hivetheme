@@ -45,7 +45,7 @@ final class HivePress extends Component {
 			if ( ht\is_plugin_active( 'woocommerce' ) ) {
 
 				// Hide page header.
-				add_filter( 'hivetheme/v1/areas/page_header', [ $this, 'hide_page_header' ] );
+				add_filter( 'hivetheme/v1/areas/site_hero', [ $this, 'hide_page_header' ], 100 );
 
 				// Render page title.
 				add_action( 'woocommerce_account_content', [ $this, 'render_page_title' ], 1 );
