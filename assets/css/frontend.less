@@ -145,6 +145,7 @@ html {
 html {
 	font-size: 16px;
 	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 body {
@@ -443,6 +444,24 @@ Alignments
 	float: right;
 	margin-left: 2rem;
 }
+
+.alignwide {
+	width:auto;
+
+	@media only screen and (min-width: 48em) {
+		margin-left:calc(25% - 25vw);
+		margin-right:calc(25% - 25vw);
+	}
+}
+
+.alignfull {
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+}
 /*--------------------------------------------------------------
 Media
 --------------------------------------------------------------*/
@@ -714,7 +733,8 @@ table {
 		}
 	}
 
-	&.wp-block-table {
+	&.wp-block-table,
+	&.wp-calendar-table {
 		td,
 		th {
 			border-color: @border-color;
@@ -730,7 +750,7 @@ table {
 		}
 	}
 
-	&:not(.wp-block-table) {
+	&:not(.wp-block-table):not(.wp-calendar-table) {
 		tbody {
 			tr:last-child {
 				td,
@@ -1490,6 +1510,7 @@ Widgets
 .widget_product_categories,
 .widget_recent_entries,
 .wp-block-archives,
+.wp-block-rss,
 .wp-block-categories,
 .wp-block-latest-posts {
 	li {
@@ -1527,6 +1548,7 @@ Widgets
 
 .widget_pages,
 .widget_recent_entries,
+.wp-block-rss,
 .wp-block-latest-posts {
 	li {
 		padding-left: 1.35rem;
@@ -1592,14 +1614,30 @@ Blocks
 	&-latest-posts,
 	&-media-text,
 	&-video,
+	&-rss,
+	&-search,
 	&-quote.is-style-large,
-	&-pullquote {
+	&-pullquote,
+	&-calendar {
 		&:not(:first-child) {
 			margin-top: 2rem;
 		}
 
 		&:not(:last-child) {
 			margin-bottom: 2rem;
+		}
+	}
+
+	&-search {
+		label {
+			display:none;
+		}
+	}
+
+	&-columns {
+		&.alignfull {
+			padding-left:2rem;
+			padding-right:2rem;
 		}
 	}
 
@@ -1613,9 +1651,24 @@ Blocks
 		}
 	}
 
+	&-image {
+		.alignleft {
+			margin:0 2rem 1rem 0;
+		}
+
+		.alignright {
+			margin:0 0 1rem 2rem;
+		}
+
+		img {
+			display:block;
+		}
+	}
+
 	&-archives,
 	&-categories,
 	&-latest-comments,
+	&-rss,
 	&-latest-posts {
 		margin-left: 0;
 
@@ -1712,6 +1765,7 @@ Blocks
 		border: none;
 		padding: 1rem 1.5rem;
 		font-size: 1rem;
+		border-radius: 0;
 	}
 
 	&-separator,
@@ -1780,6 +1834,7 @@ Blocks
 			border: 2px solid @border-color;
 			transition: border-color @animation-duration;
 			padding: 0.375rem 0.875rem;
+			color:@body-font-color;
 
 			&::before {
 				opacity: 0;
@@ -1794,6 +1849,29 @@ Blocks
 	&-file {
 		& &__button {
 			background-color: @ternary-background-color;
+		}
+	}
+
+	&-calendar {
+		table {
+			margin-bottom:1rem;
+
+			tbody {
+				color:inherit;
+			}
+
+			th {
+				background-color:@secondary-background-color;
+			}
+
+			caption {
+				color:@secondary-font-color;
+				margin-bottom:0.5rem;
+			}
+		}
+
+		a {
+			text-decoration: none;
 		}
 	}
 }
@@ -1836,6 +1914,13 @@ Posts
 		margin-top: 0;
 	}
 
+	&__tags,
+	&__text {
+		&:not(:last-child) {
+			margin-bottom: 1.5rem;
+		}
+	}
+
 	&__text {
 		.clear-container;
 	}
@@ -1862,11 +1947,72 @@ Posts
 			}
 		}
 	}
+
+	&--single &__categories {
+		&:not(:last-child) {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	&--archive &__categories {
+		&:not(:last-child) {
+			margin-bottom: 0.25rem;
+		}
+	}
+
+	&__details {
+		margin-bottom: -.75rem;
+
+		> * {
+			display: flex;
+			align-items: center;
+			color: @secondary-font-color;
+			margin-bottom: 0.75rem;
+
+			&:not(:last-child) {
+				margin-right: 0.75rem;
+			}
+
+			i {
+				font-size: 13px;
+
+				&:first-child {
+					margin-right: 0.4rem;
+				}
+
+				&:last-child {
+					margin-left: 0.4rem;
+					transition: transform @animation-duration;
+				}
+			}
+
+			&:hover i {
+				&:last-child {
+					transform: translateX(5px);
+				}
+			}
+		}
+
+		a {
+			transition: color @animation-duration;
+
+			&:hover {
+				color: @primary-font-color;
+			}
+		}
+	}
+}
+
+.post-navbar {
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
 }
 /*--------------------------------------------------------------
 Tags
 --------------------------------------------------------------*/
-.tagcloud {
+.tagcloud,
+.wp-block-tag-cloud {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: -.5rem;
@@ -1900,16 +2046,19 @@ Comments
 
 	ul {
 		.unstyled-list;
+
+		li[id^='comment-'] {
+			&:not(:last-child) {
+				margin-bottom: 2rem;
+			}
+		}
 	}
 
 	> ul {
 		> li {
-			&:not(:last-child) {
-				margin-bottom: 2rem;
-			}
-
 			ul {
 				padding-left: 5.5rem;
+				margin-top:2rem;
 
 				@media only screen and (max-width: 47.99em) {
 					padding-left: 0;
@@ -1980,6 +2129,7 @@ Comments
 			color: inherit;
 			display: flex;
 			align-items: center;
+			transition: color @animation-duration;
 
 			&:hover {
 				color: @primary-font-color;
@@ -1997,6 +2147,7 @@ Comments
 		ul {
 			margin-left: 2rem;
 			padding-left: 0!important;
+			margin-top:0!important;
 
 			&:not(:last-child) {
 				margin-bottom: 1rem;
@@ -2010,7 +2161,7 @@ Comments
 
 			ol,
 			ul {
-				margin-top: 0.5rem;
+				margin-top: 0.5rem!important;
 			}
 		}
 
@@ -2364,6 +2515,13 @@ HivePress
 		&__action--user-password-request {
 			font-size: 0.875rem;
 		}
+
+		&--listing-sort,
+		&--vendor-sort {
+			select {
+				padding: 0.25rem;
+			}
+		}
 	}
 
 	&-field {
@@ -2530,6 +2688,33 @@ HivePress
 
 		&--edit-block &__created-date {
 			color: @secondary-font-color;
+		}
+
+		&--view-block &__categories,
+		&--view-page &__categories {
+			display: flex;
+			flex-wrap: wrap;
+			margin-bottom: -.5rem;
+
+			a {
+				margin-bottom: 0.5rem;
+
+				&:not(:last-child) {
+					margin-right: 0.5rem;
+				}
+			}
+		}
+
+		&--view-block &__categories {
+			&:not(:last-child) {
+				margin-bottom: 0;
+			}
+		}
+
+		&--view-page &__categories {
+			&:not(:last-child) {
+				margin-bottom: 0.25rem;
+			}
 		}
 
 		&--view-block &__attributes--secondary {
