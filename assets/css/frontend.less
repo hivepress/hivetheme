@@ -446,11 +446,10 @@ Alignments
 }
 
 .alignwide {
-	width:auto;
-
+	width: auto;
 	@media only screen and (min-width: 48em) {
-		margin-left:calc(25% - 25vw);
-		margin-right:calc(25% - 25vw);
+		margin-left: calc(25% - 25vw);
+		margin-right: calc(25% - 25vw);
 	}
 }
 
@@ -707,12 +706,12 @@ table {
 	}
 
 	th {
-		font-weight:bold;
+		font-weight: bold;
 		color: @heading-font-color;
 	}
 
-	thead,
-	tfoot {
+	tfoot,
+	thead {
 		td,
 		th {
 			color: @heading-font-color;
@@ -1211,7 +1210,6 @@ Content
 	padding: 4rem 0;
 	position: relative;
 	z-index: 1;
-
 	@media only screen and (max-width: 74.99em) {
 		padding: 3rem 0;
 	}
@@ -1241,7 +1239,6 @@ Footer
 		padding-bottom: 3rem;
 		margin-bottom: 2rem;
 	}
-
 	@media only screen and (max-width: 47.99em) {
 		> div > div {
 			&:not(:last-child) {
@@ -1510,9 +1507,9 @@ Widgets
 .widget_product_categories,
 .widget_recent_entries,
 .wp-block-archives,
-.wp-block-rss,
 .wp-block-categories,
-.wp-block-latest-posts {
+.wp-block-latest-posts,
+.wp-block-rss {
 	li {
 		position: relative;
 		color: @secondary-font-color;
@@ -1548,8 +1545,8 @@ Widgets
 
 .widget_pages,
 .widget_recent_entries,
-.wp-block-rss,
-.wp-block-latest-posts {
+.wp-block-latest-posts,
+.wp-block-rss {
 	li {
 		padding-left: 1.35rem;
 
@@ -1604,6 +1601,7 @@ Blocks
 	}
 
 	&-archives,
+	&-calendar,
 	&-categories,
 	&-cover,
 	&-cover-image,
@@ -1613,12 +1611,11 @@ Blocks
 	&-latest-comments,
 	&-latest-posts,
 	&-media-text,
-	&-video,
+	&-pullquote,
+	&-quote.is-style-large,
 	&-rss,
 	&-search,
-	&-quote.is-style-large,
-	&-pullquote,
-	&-calendar {
+	&-video {
 		&:not(:first-child) {
 			margin-top: 2rem;
 		}
@@ -1630,14 +1627,14 @@ Blocks
 
 	&-search {
 		label {
-			display:none;
+			display: none;
 		}
 	}
 
 	&-columns {
 		&.alignfull {
-			padding-left:2rem;
-			padding-right:2rem;
+			padding-left: 2rem;
+			padding-right: 2rem;
 		}
 	}
 
@@ -1653,23 +1650,23 @@ Blocks
 
 	&-image {
 		.alignleft {
-			margin:0 2rem 1rem 0;
+			margin: 0 2rem 1rem 0;
 		}
 
 		.alignright {
-			margin:0 0 1rem 2rem;
+			margin: 0 0 1rem 2rem;
 		}
 
 		img {
-			display:block;
+			display: block;
 		}
 	}
 
 	&-archives,
 	&-categories,
 	&-latest-comments,
-	&-rss,
-	&-latest-posts {
+	&-latest-posts,
+	&-rss {
 		margin-left: 0;
 
 		&,
@@ -1834,7 +1831,7 @@ Blocks
 			border: 2px solid @border-color;
 			transition: border-color @animation-duration;
 			padding: 0.375rem 0.875rem;
-			color:@body-font-color;
+			color: @body-font-color;
 
 			&::before {
 				opacity: 0;
@@ -1854,19 +1851,19 @@ Blocks
 
 	&-calendar {
 		table {
-			margin-bottom:1rem;
+			margin-bottom: 1rem;
 
 			tbody {
-				color:inherit;
+				color: inherit;
 			}
 
 			th {
-				background-color:@secondary-background-color;
+				background-color: @secondary-background-color;
 			}
 
 			caption {
-				color:@secondary-font-color;
-				margin-bottom:0.5rem;
+				color: @secondary-font-color;
+				margin-bottom: 0.5rem;
 			}
 		}
 
@@ -2007,6 +2004,51 @@ Posts
 	&:not(:last-child) {
 		margin-bottom: 2rem;
 	}
+
+	&__end,
+	&__start {
+		@media only screen and (max-width: 47.99em) {
+			&:not(:last-child):not(:empty) {
+				margin-bottom: 1rem;
+			}
+		}
+	}
+
+	&__end {
+		text-align: right;
+	}
+
+	&__title {
+		word-wrap: break-word;
+
+		i {
+			color: @icon-color;
+			font-size: 16px;
+			transition: transform @animation-duration, color @animation-duration;
+
+			&:first-child {
+				margin-right: 0.5rem;
+			}
+
+			&:last-child {
+				margin-left: 0.5rem;
+			}
+		}
+
+		&:hover {
+			i {
+				color: @primary-font-color;
+
+				&:first-child {
+					transform: translateX(-5px;);
+				}
+
+				&:last-child {
+					transform: translateX(5px;);
+				}
+			}
+		}
+	}
 }
 /*--------------------------------------------------------------
 Tags
@@ -2032,7 +2074,6 @@ Comments
 #comments {
 	&:not(:first-child) {
 		margin-top: 4rem;
-
 		@media only screen and (max-width: 47.99em) {
 			margin-top: 3rem;
 		}
@@ -2058,8 +2099,7 @@ Comments
 		> li {
 			ul {
 				padding-left: 5.5rem;
-				margin-top:2rem;
-
+				margin-top: 2rem;
 				@media only screen and (max-width: 47.99em) {
 					padding-left: 0;
 				}
@@ -2147,7 +2187,7 @@ Comments
 		ul {
 			margin-left: 2rem;
 			padding-left: 0!important;
-			margin-top:0!important;
+			margin-top: 0!important;
 
 			&:not(:last-child) {
 				margin-bottom: 1rem;
@@ -2438,7 +2478,6 @@ HivePress
 
 	&-result-count {
 		color: @secondary-font-color;
-
 		@media only screen and (max-width: 47.99em) {
 			&:not(:last-child) {
 				margin-bottom: 1rem;
@@ -2495,7 +2534,6 @@ HivePress
 		&--narrow &__button {
 			.button--large;
 		}
-
 		@media only screen and (max-width: 47.99em) {
 			&__button {
 				.button--large;
@@ -2505,7 +2543,6 @@ HivePress
 		&--narrow &__action {
 			line-height: 1.5;
 		}
-
 		@media only screen and (max-width: 47.99em) {
 			&__action {
 				line-height: 1.5;
@@ -2781,6 +2818,16 @@ HivePress
 		}
 	}
 	/*--------------------------------------------------------------
+	Listing Categories
+	--------------------------------------------------------------*/
+	&-listing-category {
+		&--view-page &__item-count {
+			&:not(:last-child) {
+				margin-bottom: 1rem;
+			}
+		}
+	}
+	/*--------------------------------------------------------------
 	Listing Packages
 	--------------------------------------------------------------*/
 	&-listing-package {
@@ -2976,8 +3023,8 @@ HivePress
 			}
 		}
 
-		&--view-block &__sent-date,
-		&--thread-block &__sent-date {
+		&--thread-block &__sent-date,
+		&--view-block &__sent-date {
 			color: @secondary-font-color;
 		}
 	}
