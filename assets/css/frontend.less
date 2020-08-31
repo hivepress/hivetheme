@@ -1796,14 +1796,13 @@ Blocks
 	}
 
 	&-gallery {
-		.unstyled-list;
-
-		&.alignleft {
-			margin-right: 2rem;
+		&.alignfull {
+			padding-left:2rem;
+			padding-right:2rem;
 		}
 
-		&.alignright {
-			margin-left: 2rem;
+		ul {
+			.unstyled-list;
 		}
 
 		.blocks-gallery-item {
@@ -1811,6 +1810,11 @@ Blocks
 				overflow-x: hidden;
 				font-style: normal;
 			}
+		}
+
+		.blocks-gallery-caption {
+			color:@secondary-font-color;
+			font-size:0.875rem;
 		}
 	}
 
@@ -1825,6 +1829,10 @@ Blocks
 
 		&__link {
 			.button;
+
+			&:not(.has-text-color) {
+				color:inherit;
+			}
 		}
 
 		&.is-style-outline &__link {
@@ -1912,18 +1920,25 @@ Posts
 	}
 
 	&__tags,
-	&__text {
+	&--single &__text {
 		&:not(:last-child) {
 			margin-bottom: 1.5rem;
 		}
 	}
 
-	&__text {
-		.clear-container;
+	&--archive &__image,
+	&--archive &__text {
+		&:not(:last-child) {
+			margin-bottom: 1rem;
+		}
 	}
 
-	&--archive &__image {
+	&__image {
 		.image-container;
+	}
+
+	&__text {
+		.clear-container;
 	}
 
 	&__categories,
@@ -2018,8 +2033,10 @@ Posts
 		text-align: right;
 	}
 
-	&__title {
-		word-wrap: break-word;
+	&__link {
+		span {
+			word-wrap: break-word;
+		}
 
 		i {
 			color: @icon-color;
