@@ -1,6 +1,6 @@
 {
     "name": "hivepress/hivetheme",
-    "description": "A lightweight framework for HivePress themes.",
+    "description": "A framework for HivePress themes.",
     "type": "wordpress-plugin",
     "license": "GPL-3.0-or-later",
     "minimum-stability": "stable",
