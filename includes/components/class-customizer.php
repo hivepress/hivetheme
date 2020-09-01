@@ -197,7 +197,7 @@ final class Customizer extends Component {
 
 							// Font family.
 							case 'font-family':
-								$value = ht\get_first_array_value( explode( ':', $value ) ) . ', sans-serif';
+								$value .= ', sans-serif';
 
 								break;
 						}
@@ -220,7 +220,7 @@ final class Customizer extends Component {
 		}
 
 		// Add styles.
-		wp_add_inline_style( 'hivetheme-core-frontend', $styles );
+		wp_add_inline_style( 'hivetheme-parent-frontend', $styles );
 	}
 
 	/**

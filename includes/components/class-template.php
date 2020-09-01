@@ -35,6 +35,9 @@ final class Template extends Component {
 		// Register widget areas.
 		add_action( 'widgets_init', [ $this, 'register_widget_areas' ] );
 
+		// Render theme header.
+		add_action( 'wp_body_open', [ $this, 'render_theme_header' ] );
+
 		parent::__construct( $args );
 	}
 
@@ -90,19 +93,25 @@ final class Template extends Component {
 	public function render_part( $path, $context = [] ) {
 		$output = '';
 
-		// Extract context.
-		unset( $context['path'] );
-		unset( $context['output'] );
+		// Get file path.
+		$filepath = locate_template( $path . '.php' );
 
-		extract( $context );
+		if ( $filepath ) {
 
-		// Render template.
-		ob_start();
+			// Extract context.
+			unset( $context['filepath'] );
+			unset( $context['output'] );
 
-		include locate_template( $path . '.php' );
-		$output = ob_get_contents();
+			extract( $context );
 
-		ob_end_clean();
+			// Render part.
+			ob_start();
+
+			include $filepath;
+			$output = ob_get_contents();
+
+			ob_end_clean();
+		}
 
 		return $output;
 	}
@@ -127,5 +136,17 @@ final class Template extends Component {
 	 */
 	public function render_header() {
 		return apply_filters( 'hivetheme/v1/areas/site_hero', '' );
+	}
+
+	/**
+	 * Renders theme header.
+	 */
+	public function render_theme_header() {
+		$output = '';
+
+		// Render skip link.
+		$output .= '<a href="#content" class="skip-link screen-reader-text">' . esc_html__( 'Skip to content', 'hivetheme' ) . '</a>';
+
+		echo $output;
 	}
 }
