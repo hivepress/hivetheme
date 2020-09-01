@@ -171,7 +171,6 @@ final class Core {
 			} else {
 
 				// Get file path.
-				$dirname  = basename( $dir );
 				$filepath = $dir . '/style.css';
 
 				// Get extension name.
@@ -180,7 +179,7 @@ final class Core {
 				if ( file_exists( $filepath ) ) {
 
 					// Get theme data.
-					$theme = wp_get_theme( $dirname );
+					$theme = wp_get_theme( basename( $dir ) );
 
 					// Add extension.
 					$this->extensions[ $name ] = [
