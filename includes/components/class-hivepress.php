@@ -50,6 +50,9 @@ final class HivePress extends Component {
 				// Render page title.
 				add_action( 'woocommerce_account_content', [ $this, 'render_page_title' ], 1 );
 			}
+
+			// Alter templates.
+			add_filter( 'hivepress/v1/templates/page_sidebar_left', [ $this, 'alter_page_sidebar_left' ] );
 		}
 
 		parent::__construct( $args );
@@ -140,5 +143,26 @@ final class HivePress extends Component {
 				]
 			) )->render();
 		}
+	}
+
+	/**
+	 * Alters page sidebar left.
+	 *
+	 * @param array $template Template arguments.
+	 * @return array
+	 */
+	public function alter_page_sidebar_left( $template ) {
+		return hp\merge_trees(
+			$template,
+			[
+				'blocks' => [
+					'page_sidebar' => [
+						'attributes' => [
+							'class' => [ 'site-sidebar' ],
+						],
+					],
+				],
+			]
+		);
 	}
 }
