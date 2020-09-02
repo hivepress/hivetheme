@@ -3,9 +3,5 @@
     "description": "A framework for HivePress themes.",
     "type": "wordpress-plugin",
     "license": "GPL-3.0-or-later",
-    "minimum-stability": "stable",
-
-    "require": {
-        "tgmpa/tgm-plugin-activation": "^2.6.1"
-    }
+    "minimum-stability": "stable"
 }

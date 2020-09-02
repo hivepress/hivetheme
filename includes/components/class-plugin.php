@@ -41,11 +41,7 @@ final class Plugin extends Component {
 	 * Loads TGMPA.
 	 */
 	public function load_tgmpa() {
-		$filepath = hivetheme()->get_path( 'parent' ) . '/vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php';
-
-		if ( file_exists( $filepath ) ) {
-			require_once $filepath;
-		}
+		require_once hivetheme()->get_path() . '/vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php';
 	}
 
 	/**
