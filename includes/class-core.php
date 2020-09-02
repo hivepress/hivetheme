@@ -146,10 +146,12 @@ final class Core {
 			} elseif ( $dir === $core_dir ) {
 
 				// Get core URL.
-				$url = rtrim( plugin_dir_url( HT_FILE ), '/' );
+				$url = '';
 
-				if ( strpos( $dir, $parent_dir ) === 0 ) {
-					$url = get_template_directory_uri() . substr( $dir, strlen( $parent_dir ) );
+				if ( in_array( 'hivetheme/hivetheme.php', (array) get_option( 'active_plugins' ), true ) ) {
+					$url = rtrim( plugin_dir_url( HT_FILE ), '/' );
+				} else {
+					$url = get_template_directory_uri() . '/vendor/hivepress/hivetheme';
 				}
 
 				// Get file data.
