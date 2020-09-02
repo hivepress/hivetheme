@@ -20,11 +20,21 @@ defined( 'ABSPATH' ) || exit;
 final class Customizer extends Component {
 
 	/**
+	 * Array of defaults.
+	 *
+	 * @var array
+	 */
+	protected $defaults = [];
+
+	/**
 	 * Class constructor.
 	 *
 	 * @param array $args Component arguments.
 	 */
 	public function __construct( $args = [] ) {
+
+		// Set theme defaults.
+		add_action( 'init', [ $this, 'set_theme_defaults' ] );
 
 		// Register theme mods.
 		add_action( 'customize_register', [ $this, 'register_theme_mods' ], 1000 );
@@ -46,6 +56,37 @@ final class Customizer extends Component {
 		}
 
 		parent::__construct( $args );
+	}
+
+	/**
+	 * Sets theme defaults.
+	 */
+	public function set_theme_defaults() {
+		foreach ( hivetheme()->get_config( 'theme_mods' ) as $section ) {
+			foreach ( $section['fields'] as $name => $args ) {
+				if ( isset( $args['default'] ) ) {
+					$this->defaults[ $name ] = $args['default'];
+
+					add_filter( 'theme_mod_' . $name, [ $this, 'set_theme_default' ] );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Sets theme default.
+	 *
+	 * @param mixed $value Mod value.
+	 * @return mixed
+	 */
+	public function set_theme_default( $value ) {
+		if ( false === $value ) {
+			$name = substr( current_filter(), strlen( 'theme_mod_' ) );
+
+			$value = $this->defaults[ $name ];
+		}
+
+		return $value;
 	}
 
 	/**
