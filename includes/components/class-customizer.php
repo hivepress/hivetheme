@@ -27,7 +27,7 @@ final class Customizer extends Component {
 	public function __construct( $args = [] ) {
 
 		// Register theme mods.
-		add_action( 'customize_register', [ $this, 'register_theme_mods' ] );
+		add_action( 'customize_register', [ $this, 'register_theme_mods' ], 1000 );
 
 		if ( is_admin() ) {
 
