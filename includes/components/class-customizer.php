@@ -238,7 +238,8 @@ final class Customizer extends Component {
 
 							// Font family.
 							case 'font-family':
-								$value .= ', sans-serif';
+								// @todo Remove fallback for font weight.
+								$value = ht\get_first_array_value( explode( ':', $value ) ) . ', sans-serif';
 
 								break;
 						}
@@ -279,7 +280,9 @@ final class Customizer extends Component {
 			$font = get_theme_mod( $name );
 
 			if ( $font ) {
-				if ( $font === $this->defaults[ $name ] ) {
+
+				// @todo Remove fallback for font weight.
+				if ( $font === $this->defaults[ $name ] && strpos( $font, ':' ) === false ) {
 					$font_weight = get_theme_mod( $name . '_weight' );
 
 					if ( $font_weight ) {
