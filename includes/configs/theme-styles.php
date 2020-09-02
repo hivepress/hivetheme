@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 return [
-	[
+	'heading_font'               => [
 		'selector'   => '
 			h1,
 			h2,
@@ -38,7 +38,7 @@ return [
 		],
 	],
 
-	[
+	'body_font'                  => [
 		'selector'   => '
 			body
 		',
@@ -51,7 +51,7 @@ return [
 		],
 	],
 
-	[
+	'primary_color'              => [
 		'selector'   => '
 			.header-navbar__menu ul li.active > a,
 			.header-navbar__menu ul li.current-menu-item > a,
@@ -113,7 +113,7 @@ return [
 		],
 	],
 
-	[
+	'primary_background_color'   => [
 		'selector'   => '
 			.button--primary,
 			button[type="submit"],
@@ -143,7 +143,7 @@ return [
 		],
 	],
 
-	[
+	'primary_border_color'       => [
 		'selector'   => '
 			blockquote,
 			.wp-block-quote,
@@ -158,7 +158,7 @@ return [
 		],
 	],
 
-	[
+	'secondary_color'            => [
 		'selector'   => '
 			.hp-listing__location i
 		',
@@ -171,7 +171,7 @@ return [
 		],
 	],
 
-	[
+	'secondary_background_color' => [
 		'selector'   => '
 			.button--secondary,
 			.wp-block-file .wp-block-file__button,
@@ -196,7 +196,7 @@ return [
 		],
 	],
 
-	[
+	'secondary_border_color'     => [
 		'selector'   => '
 			.hp-field input[type=radio]:checked + span::before,
 			.hp-field input[type=checkbox]:checked + span::before
