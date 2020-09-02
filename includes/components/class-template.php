@@ -96,6 +96,14 @@ final class Template extends Component {
 		// Get file path.
 		$filepath = locate_template( $path . '.php' );
 
+		if ( empty( $filepath ) ) {
+			$dirpath = hivetheme()->get_path() . '/' . $path . '.php';
+
+			if ( file_exists( $dirpath ) ) {
+				$filepath = $dirpath;
+			}
+		}
+
 		if ( $filepath ) {
 
 			// Extract context.
@@ -143,6 +151,9 @@ final class Template extends Component {
 	 */
 	public function render_theme_header() {
 		$output = '';
+
+		// Render page loader.
+		$output .= $this->render_part( 'templates/page/page-loader', [ 'color' => '#ffc107' ] );
 
 		// Render skip link.
 		$output .= '<a href="#content" class="skip-link screen-reader-text">' . esc_html__( 'Skip to content', 'hivetheme' ) . '</a>';
