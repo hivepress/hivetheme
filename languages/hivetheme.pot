@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HiveTheme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-27 16:50+0000\n"
+"POT-Creation-Date: 2020-09-02 15:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,56 +15,32 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.4.2; wp-5.5"
 
-#. Description of the plugin
-msgid "A lightweight framework for HivePress themes."
+#. 1: theme name, 2: link URL.
+#: includes/components/class-hivepress.php:95
+#, php-format
+msgid ""
+"If you want to start with the %1$s demo content, please follow <a "
+"href=\"%2$s\" target=\"_blank\">this screencast</a> to import it."
 msgstr ""
 
-#: includes/configs/theme-mods.php:47
-msgid "Body Font"
-msgstr ""
-
-#: includes/configs/theme-mods.php:22
-msgid "Colors"
-msgstr ""
-
-#: includes/configs/theme-mods.php:15
-msgid "Copyright Notice"
-msgstr ""
-
-#: includes/configs/theme-mods.php:38
-msgid "Fonts"
-msgstr ""
-
-#: includes/configs/menu-locations.php:17
-msgid "Footer"
+#: includes/components/class-template.php:159
+msgid "Skip to content"
 msgstr ""
 
 #: includes/configs/menu-locations.php:13
 msgid "Header"
 msgstr ""
 
-#: includes/configs/theme-mods.php:42
-msgid "Heading Font"
+#: includes/configs/menu-locations.php:17
+msgid "Footer"
 msgstr ""
 
-#. Author of the plugin
-msgid "HivePress"
+#: includes/configs/theme-mods.php:15
+msgid "Copyright Notice"
 msgstr ""
 
-#. Name of the plugin
-msgid "HiveTheme"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://hivepress.io/"
-msgstr ""
-
-#. 1: theme name, 2: link URL.
-#: includes/components/class-hivepress.php:92
-#, php-format
-msgid ""
-"If you want to start with the %1$s demo content, please follow <a "
-"href=\"%2$s\" target=\"_blank\">this screencast</a> to import it."
+#: includes/configs/theme-mods.php:22
+msgid "Colors"
 msgstr ""
 
 #: includes/configs/theme-mods.php:26
@@ -73,4 +49,61 @@ msgstr ""
 
 #: includes/configs/theme-mods.php:31
 msgid "Secondary Color"
+msgstr ""
+
+#: includes/configs/theme-mods.php:38
+msgid "Fonts"
+msgstr ""
+
+#: includes/configs/theme-mods.php:42
+msgid "Heading Font"
+msgstr ""
+
+#: includes/configs/theme-mods.php:51
+msgid "Body Font"
+msgstr ""
+
+#: includes/configs/widget-areas.php:13
+msgid "Blog"
+msgstr ""
+
+#: includes/configs/widget-areas.php:13 includes/configs/widget-areas.php:21
+#: includes/configs/widget-areas.php:30 includes/configs/widget-areas.php:39
+#: includes/configs/widget-areas.php:48 includes/configs/widget-areas.php:57
+#: includes/configs/widget-areas.php:66
+msgctxt "area"
+msgid "sidebar"
+msgstr ""
+
+#: includes/configs/widget-areas.php:57
+msgid "Account"
+msgstr ""
+
+#: includes/configs/widget-areas.php:66
+msgid "Shop"
+msgstr ""
+
+#: includes/configs/widget-areas.php:75
+msgid "Site"
+msgstr ""
+
+#: includes/configs/widget-areas.php:75
+msgctxt "area"
+msgid "footer"
+msgstr ""
+
+#. Name of the plugin
+msgid "HiveTheme"
+msgstr ""
+
+#. Description of the plugin
+msgid "A framework for HivePress themes."
+msgstr ""
+
+#. Author of the plugin
+msgid "HivePress"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://hivepress.io/"
 msgstr ""
