@@ -265,41 +265,43 @@ final class Customizer extends Component {
 	}
 
 	/**
-	 * Gets fonts.
+	 * Gets fonts URL.
 	 *
-	 * @return array
+	 * @return string
 	 */
-	protected function get_fonts() {
-
-		// Get theme mods.
-		$theme_mods = [];
-
-		foreach ( hivetheme()->get_config( 'theme_styles' ) as $style ) {
-			foreach ( $style['properties'] as $property ) {
-				if ( 'font-family' === $property['name'] ) {
-					$theme_mods[] = $property['theme_mod'];
-				}
-			}
-		}
-
-		$theme_mods = array_unique( $theme_mods );
+	protected function get_fonts_url() {
+		$url = '';
 
 		// Get fonts.
 		$fonts = [];
 
-		foreach ( hivetheme()->get_config( 'theme_mods' ) as $section ) {
-			foreach ( $section['fields'] as $field_name => $field ) {
-				if ( in_array( $field_name, $theme_mods, true ) ) {
-					$font = get_theme_mod( $field_name, ht\get_array_value( $field, 'default', false ) );
+		foreach ( [ 'heading_font', 'body_font' ] as $name ) {
+			$font = get_theme_mod( $name );
 
-					if ( $font ) {
-						$fonts[] = $font;
+			if ( $font ) {
+				if ( $font === $this->defaults[ $name ] ) {
+					$font_weight = get_theme_mod( $name . '_weight' );
+
+					if ( $font_weight ) {
+						$font .= ':' . $font_weight;
 					}
 				}
+
+				$fonts[] = $font;
 			}
 		}
 
-		return $fonts;
+		// Set URL.
+		if ( $fonts ) {
+			$url = 'https://fonts.googleapis.com/css?' . http_build_query(
+				[
+					'family'  => implode( '|', $fonts ),
+					'display' => 'swap',
+				]
+			);
+		}
+
+		return $url;
 	}
 
 	/**
@@ -307,12 +309,12 @@ final class Customizer extends Component {
 	 */
 	public function enqueue_fonts() {
 
-		// Get fonts.
-		$fonts = $this->get_fonts();
+		// Get URL.
+		$url = $this->get_fonts_url();
 
 		// Enqueue fonts.
-		if ( $fonts ) {
-			wp_enqueue_style( 'google-fonts', esc_url( 'https://fonts.googleapis.com/css?family=' . rawurlencode( implode( '|', $fonts ) ) . '&display=swap' ), [], null );
+		if ( $url ) {
+			wp_enqueue_style( 'google-fonts', esc_url( $url ), [], null );
 		}
 	}
 
@@ -321,12 +323,12 @@ final class Customizer extends Component {
 	 */
 	public function add_editor_fonts() {
 
-		// Get fonts.
-		$fonts = $this->get_fonts();
+		// Get URL.
+		$url = $this->get_fonts_url();
 
 		// Enqueue fonts.
-		if ( $fonts ) {
-			add_editor_style( esc_url( 'https://fonts.googleapis.com/css?family=' . rawurlencode( implode( '|', $fonts ) ) . '&display=swap' ) );
+		if ( $url ) {
+			add_editor_style( esc_url( $url ) );
 		}
 	}
 }
