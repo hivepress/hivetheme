@@ -52,7 +52,7 @@ final class Customizer extends Component {
 			add_action( 'wp_enqueue_scripts', [ $this, 'add_theme_styles' ] );
 
 			// Enqueue fonts.
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_fonts' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_fonts' ], 1 );
 		}
 
 		parent::__construct( $args );
