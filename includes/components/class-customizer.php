@@ -201,6 +201,9 @@ final class Customizer extends Component {
 	 * Resets theme styles.
 	 */
 	public function reset_theme_styles() {
+		remove_theme_mod( 'custom_styles' );
+
+		// @todo Remove fallback for the old name.
 		remove_theme_mod( 'theme_styles' );
 	}
 
@@ -210,7 +213,7 @@ final class Customizer extends Component {
 	public function add_theme_styles() {
 
 		// Get cached styles.
-		$styles = get_theme_mod( 'theme_styles' );
+		$styles = get_theme_mod( 'custom_styles' );
 
 		if ( false === $styles || is_customize_preview() ) {
 
@@ -258,7 +261,7 @@ final class Customizer extends Component {
 			$styles = preg_replace( '/[\t\r\n]+/', '', $styles );
 
 			// Cache styles.
-			set_theme_mod( 'theme_styles', $styles );
+			set_theme_mod( 'custom_styles', $styles );
 		}
 
 		// Add styles.
