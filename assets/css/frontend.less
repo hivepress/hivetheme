@@ -1146,7 +1146,6 @@ Header
 
 				> a {
 					font-size: 1.125rem;
-					color: @heading-font-color;
 				}
 			}
 		}
@@ -1160,6 +1159,7 @@ Header
 		line-height: 1.25;
 		font-size: 1.5625rem;
 		color: @heading-font-color;
+		transition: color @animation-duration;
 
 		&:not(:last-child) {
 			margin-bottom: 0.25rem;
@@ -2439,6 +2439,8 @@ HivePress
 	&-menu {
 		&--site-header {
 			button {
+				white-space: nowrap;
+
 				@media only screen and (max-width: 47.99em) {
 					padding: 0.25rem 0.56rem;
 				}
