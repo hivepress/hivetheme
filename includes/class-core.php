@@ -200,7 +200,11 @@ final class Core {
 	 */
 	protected function load_textdomains() {
 		foreach ( $this->get_paths() as $dir ) {
-			load_theme_textdomain( ht\sanitize_slug( basename( $dir ) ), $dir . '/languages' );
+			$domain = ht\sanitize_slug( basename( $dir ) );
+
+			if ( 'hivetheme' !== $domain ) {
+				load_theme_textdomain( $domain, $dir . '/languages' );
+			}
 		}
 	}
 
