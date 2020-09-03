@@ -10,10 +10,10 @@ defined( 'ABSPATH' ) || exit;
 
 return [
 	'header' => [
-		'description' => esc_html__( 'Header', 'hivetheme' ),
+		'description' => esc_html__( 'Header', 'listinghive' ),
 	],
 
 	'footer' => [
-		'description' => esc_html__( 'Footer', 'hivetheme' ),
+		'description' => esc_html__( 'Footer', 'listinghive' ),
 	],
 ];

@@ -5,7 +5,7 @@
  * Version: 1.0.1
  * Author: HivePress
  * Author URI: https://hivepress.io/
- * Text Domain: hivetheme
+ * Text Domain: listinghive
  * Domain Path: /languages/
  *
  * @package HiveTheme
