@@ -2,10 +2,10 @@
 /**
  * Plugin Name: HiveTheme
  * Description: A framework for HivePress themes.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: HivePress
  * Author URI: https://hivepress.io/
- * Text Domain: hivetheme
+ * Text Domain: listinghive
  * Domain Path: /languages/
  *
  * @package HiveTheme

@@ -12,34 +12,34 @@ return [
 	'title_tagline' => [
 		'fields' => [
 			'copyright_notice' => [
-				'label' => esc_html__( 'Copyright Notice', 'hivetheme' ),
+				'label' => esc_html__( 'Copyright Notice', 'listinghive' ),
 				'type'  => 'textarea',
 			],
 		],
 	],
 
 	'colors'        => [
-		'title'  => esc_html__( 'Colors', 'hivetheme' ),
+		'title'  => esc_html__( 'Colors', 'listinghive' ),
 
 		'fields' => [
 			'primary_color'   => [
-				'label' => esc_html__( 'Primary Color', 'hivetheme' ),
+				'label' => esc_html__( 'Primary Color', 'listinghive' ),
 				'type'  => 'color',
 			],
 
 			'secondary_color' => [
-				'label' => esc_html__( 'Secondary Color', 'hivetheme' ),
+				'label' => esc_html__( 'Secondary Color', 'listinghive' ),
 				'type'  => 'color',
 			],
 		],
 	],
 
 	'fonts'         => [
-		'title'  => esc_html__( 'Fonts', 'hivetheme' ),
+		'title'  => esc_html__( 'Fonts', 'listinghive' ),
 
 		'fields' => [
 			'heading_font'        => [
-				'label' => esc_html__( 'Heading Font', 'hivetheme' ),
+				'label' => esc_html__( 'Heading Font', 'listinghive' ),
 				'type'  => 'font',
 			],
 
@@ -48,7 +48,7 @@ return [
 			],
 
 			'body_font'           => [
-				'label' => esc_html__( 'Body Font', 'hivetheme' ),
+				'label' => esc_html__( 'Body Font', 'listinghive' ),
 				'type'  => 'font',
 			],
 
