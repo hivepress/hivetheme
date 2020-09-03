@@ -20,14 +20,24 @@ defined( 'ABSPATH' ) || exit;
 final class Customizer extends Component {
 
 	/**
+	 * Array of defaults.
+	 *
+	 * @var array
+	 */
+	protected $defaults = [];
+
+	/**
 	 * Class constructor.
 	 *
 	 * @param array $args Component arguments.
 	 */
 	public function __construct( $args = [] ) {
 
+		// Set theme defaults.
+		add_action( 'init', [ $this, 'set_theme_defaults' ] );
+
 		// Register theme mods.
-		add_action( 'customize_register', [ $this, 'register_theme_mods' ] );
+		add_action( 'customize_register', [ $this, 'register_theme_mods' ], 1000 );
 
 		if ( is_admin() ) {
 
@@ -42,10 +52,41 @@ final class Customizer extends Component {
 			add_action( 'wp_enqueue_scripts', [ $this, 'add_theme_styles' ] );
 
 			// Enqueue fonts.
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_fonts' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_fonts' ], 1 );
 		}
 
 		parent::__construct( $args );
+	}
+
+	/**
+	 * Sets theme defaults.
+	 */
+	public function set_theme_defaults() {
+		foreach ( hivetheme()->get_config( 'theme_mods' ) as $section ) {
+			foreach ( $section['fields'] as $name => $args ) {
+				if ( isset( $args['default'] ) ) {
+					$this->defaults[ $name ] = $args['default'];
+
+					add_filter( 'theme_mod_' . $name, [ $this, 'set_theme_default' ] );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Sets theme default.
+	 *
+	 * @param mixed $value Mod value.
+	 * @return mixed
+	 */
+	public function set_theme_default( $value ) {
+		if ( false === $value ) {
+			$name = substr( current_filter(), strlen( 'theme_mod_' ) );
+
+			$value = $this->defaults[ $name ];
+		}
+
+		return $value;
 	}
 
 	/**
@@ -160,6 +201,9 @@ final class Customizer extends Component {
 	 * Resets theme styles.
 	 */
 	public function reset_theme_styles() {
+		remove_theme_mod( 'custom_styles' );
+
+		// @todo Remove fallback for the old name.
 		remove_theme_mod( 'theme_styles' );
 	}
 
@@ -169,7 +213,7 @@ final class Customizer extends Component {
 	public function add_theme_styles() {
 
 		// Get cached styles.
-		$styles = get_theme_mod( 'theme_styles' );
+		$styles = get_theme_mod( 'custom_styles' );
 
 		if ( false === $styles || is_customize_preview() ) {
 
@@ -197,7 +241,8 @@ final class Customizer extends Component {
 
 							// Font family.
 							case 'font-family':
-								$value .= ', sans-serif';
+								// @todo Remove fallback for font weight.
+								$value = ht\get_first_array_value( explode( ':', $value ) ) . ', sans-serif';
 
 								break;
 						}
@@ -216,7 +261,7 @@ final class Customizer extends Component {
 			$styles = preg_replace( '/[\t\r\n]+/', '', $styles );
 
 			// Cache styles.
-			set_theme_mod( 'theme_styles', $styles );
+			set_theme_mod( 'custom_styles', $styles );
 		}
 
 		// Add styles.
@@ -224,41 +269,45 @@ final class Customizer extends Component {
 	}
 
 	/**
-	 * Gets fonts.
+	 * Gets fonts URL.
 	 *
-	 * @return array
+	 * @return string
 	 */
-	protected function get_fonts() {
-
-		// Get theme mods.
-		$theme_mods = [];
-
-		foreach ( hivetheme()->get_config( 'theme_styles' ) as $style ) {
-			foreach ( $style['properties'] as $property ) {
-				if ( 'font-family' === $property['name'] ) {
-					$theme_mods[] = $property['theme_mod'];
-				}
-			}
-		}
-
-		$theme_mods = array_unique( $theme_mods );
+	protected function get_fonts_url() {
+		$url = '';
 
 		// Get fonts.
 		$fonts = [];
 
-		foreach ( hivetheme()->get_config( 'theme_mods' ) as $section ) {
-			foreach ( $section['fields'] as $field_name => $field ) {
-				if ( in_array( $field_name, $theme_mods, true ) ) {
-					$font = get_theme_mod( $field_name, ht\get_array_value( $field, 'default', false ) );
+		foreach ( [ 'heading_font', 'body_font' ] as $name ) {
+			$font = get_theme_mod( $name );
 
-					if ( $font ) {
-						$fonts[] = $font;
+			if ( $font ) {
+
+				// @todo Remove fallback for font weight.
+				if ( $font === $this->defaults[ $name ] && strpos( $font, ':' ) === false ) {
+					$font_weight = get_theme_mod( $name . '_weight' );
+
+					if ( $font_weight ) {
+						$font .= ':' . $font_weight;
 					}
 				}
+
+				$fonts[] = $font;
 			}
 		}
 
-		return $fonts;
+		// Set URL.
+		if ( $fonts ) {
+			$url = 'https://fonts.googleapis.com/css?' . http_build_query(
+				[
+					'family'  => implode( '|', $fonts ),
+					'display' => 'swap',
+				]
+			);
+		}
+
+		return $url;
 	}
 
 	/**
@@ -266,12 +315,12 @@ final class Customizer extends Component {
 	 */
 	public function enqueue_fonts() {
 
-		// Get fonts.
-		$fonts = $this->get_fonts();
+		// Get URL.
+		$url = $this->get_fonts_url();
 
 		// Enqueue fonts.
-		if ( $fonts ) {
-			wp_enqueue_style( 'google-fonts', esc_url( 'https://fonts.googleapis.com/css?family=' . rawurlencode( implode( '|', $fonts ) ) . '&display=swap' ), [], null );
+		if ( $url ) {
+			wp_enqueue_style( 'google-fonts', esc_url( $url ), [], null );
 		}
 	}
 
@@ -280,12 +329,12 @@ final class Customizer extends Component {
 	 */
 	public function add_editor_fonts() {
 
-		// Get fonts.
-		$fonts = $this->get_fonts();
+		// Get URL.
+		$url = $this->get_fonts_url();
 
 		// Enqueue fonts.
-		if ( $fonts ) {
-			add_editor_style( esc_url( 'https://fonts.googleapis.com/css?family=' . rawurlencode( implode( '|', $fonts ) ) . '&display=swap' ) );
+		if ( $url ) {
+			add_editor_style( esc_url( $url ) );
 		}
 	}
 }

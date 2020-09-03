@@ -38,14 +38,22 @@ return [
 		'title'  => esc_html__( 'Fonts', 'hivetheme' ),
 
 		'fields' => [
-			'heading_font' => [
+			'heading_font'        => [
 				'label' => esc_html__( 'Heading Font', 'hivetheme' ),
 				'type'  => 'font',
 			],
 
-			'body_font'    => [
+			'heading_font_weight' => [
+				'type' => 'hidden',
+			],
+
+			'body_font'           => [
 				'label' => esc_html__( 'Body Font', 'hivetheme' ),
 				'type'  => 'font',
+			],
+
+			'body_font_weight'    => [
+				'type' => 'hidden',
 			],
 		],
 	],

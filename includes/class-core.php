@@ -146,10 +146,12 @@ final class Core {
 			} elseif ( $dir === $core_dir ) {
 
 				// Get core URL.
-				$url = rtrim( plugin_dir_url( HT_FILE ), '/' );
+				$url = '';
 
-				if ( strpos( $dir, $parent_dir ) === 0 ) {
-					$url = get_template_directory_uri() . substr( $dir, strlen( $parent_dir ) );
+				if ( in_array( 'hivetheme/hivetheme.php', (array) get_option( 'active_plugins' ), true ) ) {
+					$url = rtrim( plugin_dir_url( HT_FILE ), '/' );
+				} else {
+					$url = get_template_directory_uri() . '/vendor/hivepress/hivetheme';
 				}
 
 				// Get file data.
@@ -198,7 +200,11 @@ final class Core {
 	 */
 	protected function load_textdomains() {
 		foreach ( $this->get_paths() as $dir ) {
-			load_theme_textdomain( ht\sanitize_slug( basename( $dir ) ), $dir . '/languages' );
+			$domain = ht\sanitize_slug( basename( $dir ) );
+
+			if ( 'hivetheme' !== $domain ) {
+				load_theme_textdomain( $domain, $dir . '/languages' );
+			}
 		}
 	}
 

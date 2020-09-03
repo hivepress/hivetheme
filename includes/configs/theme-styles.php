@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 return [
-	[
+	'heading_font'               => [
 		'selector'   => '
 			h1,
 			h2,
@@ -30,10 +30,15 @@ return [
 				'name'      => 'font-family',
 				'theme_mod' => 'heading_font',
 			],
+
+			[
+				'name'      => 'font-weight',
+				'theme_mod' => 'heading_font_weight',
+			],
 		],
 	],
 
-	[
+	'body_font'                  => [
 		'selector'   => '
 			body
 		',
@@ -46,7 +51,7 @@ return [
 		],
 	],
 
-	[
+	'primary_color'              => [
 		'selector'   => '
 			.header-navbar__menu ul li.active > a,
 			.header-navbar__menu ul li.current-menu-item > a,
@@ -58,6 +63,9 @@ return [
 			.widget_categories li a:hover,
 			.widget_categories li.current-cat > a,
 			.widget_categories li.current-cat::before,
+			.widget_product_categories li a:hover,
+			.widget_product_categories li.current-cat > a,
+			.widget_product_categories li.current-cat::before,
 			.widget_meta li a:hover,
 			.widget_nav_menu li a:hover,
 			.widget_nav_menu li.current-menu-item > a,
@@ -67,8 +75,10 @@ return [
 			.wp-block-archives li a:hover,
 			.wp-block-categories li a:hover,
 			.wp-block-latest-posts li a:hover,
+			.wp-block-rss li a:hover,
 			.widget_archive li:hover > a,
 			.widget_categories li:hover > a,
+			.widget_product_categories li:hover > a,
 			.widget_meta li:hover > a,
 			.widget_nav_menu li:hover > a,
 			.widget_pages li:hover > a,
@@ -76,8 +86,10 @@ return [
 			.wp-block-archives li:hover > a,
 			.wp-block-categories li:hover > a,
 			.wp-block-latest-posts li:hover > a,
+			.wp-block-rss li:hover > a,
 			.widget_archive li:hover::before,
 			.widget_categories li:hover::before,
+			.widget_product_categories li:hover::before,
 			.widget_meta li:hover::before,
 			.widget_nav_menu li:hover::before,
 			.widget_pages li:hover::before,
@@ -85,7 +97,8 @@ return [
 			.wp-block-archives li:hover::before,
 			.wp-block-categories li:hover::before,
 			.wp-block-latest-posts li:hover::before,
-			.post__navigation a:hover i,
+			.wp-block-rss li:hover::before,
+			.post-navbar__link:hover i,
 			.pagination > a:hover,
 			.pagination .nav-links > a:hover,
 			.post__details a:hover,
@@ -108,7 +121,7 @@ return [
 		],
 	],
 
-	[
+	'primary_background_color'   => [
 		'selector'   => '
 			.button--primary,
 			button[type="submit"],
@@ -138,7 +151,7 @@ return [
 		],
 	],
 
-	[
+	'primary_border_color'       => [
 		'selector'   => '
 			blockquote,
 			.wp-block-quote,
@@ -153,7 +166,7 @@ return [
 		],
 	],
 
-	[
+	'secondary_color'            => [
 		'selector'   => '
 			.hp-listing__location i
 		',
@@ -166,7 +179,7 @@ return [
 		],
 	],
 
-	[
+	'secondary_background_color' => [
 		'selector'   => '
 			.button--secondary,
 			.wp-block-file .wp-block-file__button,
@@ -191,7 +204,7 @@ return [
 		],
 	],
 
-	[
+	'secondary_border_color'     => [
 		'selector'   => '
 			.hp-field input[type=radio]:checked + span::before,
 			.hp-field input[type=checkbox]:checked + span::before
