@@ -1351,6 +1351,12 @@ Loader
 Widgets
 --------------------------------------------------------------*/
 .widget {
+	.site-sidebar & {
+		&:not(:last-child) {
+			margin-bottom: 2rem;
+		}
+	}
+
 	&_product_search,
 	&_search {
 		form {
