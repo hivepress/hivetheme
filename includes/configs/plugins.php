@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 return [
-	[
+	'hivepress' => [
 		'name' => 'HivePress',
 		'slug' => 'hivepress',
 	],
