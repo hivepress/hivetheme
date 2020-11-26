@@ -1,20 +1,20 @@
 /*--------------------------------------------------------------
 Variables
 --------------------------------------------------------------*/
-@heading-font-color: rgba(0,0,0,0.8);
-@heading-font-color-hover: rgba(0,0,0,1);
-@body-font-color: rgba(0,0,0,0.6);
+@heading-font-color: rgba(15,23,39,.8);
+@heading-font-color-hover: rgb(15,23,39,.9);
+@body-font-color: rgba(15,23,39, .57);
 @primary-font-color: #ffc107;
 @primary-background-color: #ffc107;
-@secondary-font-color: rgba(0,0,0,0.4);
-@secondary-background-color: rgba(0,0,0,0.03);
+@secondary-font-color: rgba(15,23,39, .4);
+@secondary-background-color: #f6f9fc;
 @ternary-font-color: #15cd72;
 @ternary-background-color: #15cd72;
-@border-color: rgba(0,0,0,.06);
-@border-color-hover: rgba(0,0,0,0.1);
-@icon-color: rgba(0,0,0,0.15);
-@icon-color-hover: rgba(0,0,0,0.25);
-@box-shadow: 0 2px 4px 0 rgba(0,0,0,.06);
+@border-color: rgba(7, 36, 86, .06);
+@border-color-hover: rgba(7, 36, 86,0.1);
+@icon-color: rgba(7, 36, 86,0.15);
+@icon-color-hover: rgba(7, 36, 86,0.25);
+@box-shadow: 0 2px 4px 0 rgba(7, 36, 86, .06);
 @animation-duration: 0.25s;
 /*--------------------------------------------------------------
 Mixins
@@ -102,7 +102,7 @@ Mixins
 			width: 23px;
 			height: 23px;
 			cursor: ew-resize;
-			border: 1px solid rgba(0,0,0,.12);
+			border: 1px solid rgba(7, 36, 86,.12);
 			border-radius: 50%;
 			background-color: #fff;
 			box-shadow: @box-shadow;
@@ -119,7 +119,7 @@ Mixins
 				left: 7px;
 				width: 7px;
 				height: 7px;
-				border: 1px solid rgba(0,0,0,.12);
+				border: 1px solid rgba(7, 36, 86,.12);
 				border-top-color: transparent;
 				border-bottom-color: transparent;
 			}
@@ -129,7 +129,7 @@ Mixins
 				left: 10px;
 				width: 0;
 				height: 7px;
-				border-left: 1px solid rgba(0,0,0,.12);
+				border-left: 1px solid rgba(7, 36, 86,.12);
 			}
 		}
 	}
@@ -784,12 +784,12 @@ Buttons
 	position: relative;
 	line-height: 1.5;
 	padding: 0.5rem 1rem;
-	background-color: rgba(0,0,0,0.08);
+	background-color: rgba(7, 36, 86, 0.08);
 
 	&::before {
 		.container-overlay;
 		opacity: 0;
-		background-color: rgba(0,0,0,.06);
+		background-color: rgba(7, 36, 86,.04);
 		border-radius: inherit;
 		transition: opacity @animation-duration;
 	}
@@ -865,6 +865,8 @@ input[type=submit] {
 
 button,
 input[type=submit] {
+	font-family: inherit;
+
 	&[disabled] {
 		cursor: not-allowed;
 		opacity: 0.5;
@@ -1801,8 +1803,21 @@ Blocks
 	}
 
 	&-cover {
+		color:#fff;
+
 		& &-text {
 			padding: 2rem;
+		}
+
+		& &__inner-container {
+			width: 100%;
+			max-width: 75.25rem;
+			padding: 4rem 2rem;
+
+			@media screen and (max-width: 74.99em) {
+				padding-top:3rem;
+				padding-bottom:3rem;
+			}
 		}
 	}
 
@@ -3207,7 +3222,7 @@ WooCommerce
 
 		&,
 		&:hover {
-			background-color: rgba(0,0,0,0.08);
+			background-color: rgba(7, 36, 86, 0.08);
 			color: @body-font-color;
 		}
 
