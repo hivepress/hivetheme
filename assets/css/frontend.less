@@ -1,20 +1,20 @@
 /*--------------------------------------------------------------
 Variables
 --------------------------------------------------------------*/
-@heading-font-color: rgba(15,23,39,.8);
-@heading-font-color-hover: rgb(15,23,39,.9);
-@body-font-color: rgba(15,23,39, .57);
+@heading-font-color: rgba(15,23,39,.85);
+@heading-font-color-hover: rgb(15,23,39,1);
+@body-font-color: rgba(15,23,39, .65);
 @primary-font-color: #ffc107;
 @primary-background-color: #ffc107;
-@secondary-font-color: rgba(15,23,39, .4);
+@secondary-font-color: rgba(15,23,39, .45);
 @secondary-background-color: #f6f9fc;
 @ternary-font-color: #15cd72;
 @ternary-background-color: #15cd72;
-@border-color: rgba(7, 36, 86, .06);
-@border-color-hover: rgba(7, 36, 86,0.1);
-@icon-color: rgba(7, 36, 86,0.15);
-@icon-color-hover: rgba(7, 36, 86,0.25);
-@box-shadow: 0 2px 4px 0 rgba(7, 36, 86, .06);
+@border-color: rgba(7, 36, 86, .075);
+@border-color-hover: rgba(7, 36, 86,0.125);
+@icon-color: rgba(7, 36, 86,0.25);
+@icon-color-hover: rgba(7, 36, 86,0.35);
+@box-shadow: 0 2px 4px 0 rgba(7, 36, 86, .075);
 @animation-duration: 0.25s;
 /*--------------------------------------------------------------
 Mixins
@@ -102,7 +102,7 @@ Mixins
 			width: 23px;
 			height: 23px;
 			cursor: ew-resize;
-			border: 1px solid rgba(7, 36, 86,.12);
+			border: 1px solid @border-color-hover;
 			border-radius: 50%;
 			background-color: #fff;
 			box-shadow: @box-shadow;
@@ -119,7 +119,7 @@ Mixins
 				left: 7px;
 				width: 7px;
 				height: 7px;
-				border: 1px solid rgba(7, 36, 86,.12);
+				border: 1px solid @border-color-hover;
 				border-top-color: transparent;
 				border-bottom-color: transparent;
 			}
@@ -129,7 +129,7 @@ Mixins
 				left: 10px;
 				width: 0;
 				height: 7px;
-				border-left: 1px solid rgba(7, 36, 86,.12);
+				border-left: 1px solid @border-color-hover;
 			}
 		}
 	}
@@ -784,12 +784,12 @@ Buttons
 	position: relative;
 	line-height: 1.5;
 	padding: 0.5rem 1rem;
-	background-color: rgba(7, 36, 86, 0.08);
+	background-color: rgba(7, 36, 86, 0.085);
 
 	&::before {
 		.container-overlay;
 		opacity: 0;
-		background-color: rgba(7, 36, 86,.04);
+		background-color: rgba(7, 36, 86,.045);
 		border-radius: inherit;
 		transition: opacity @animation-duration;
 	}
@@ -3222,7 +3222,7 @@ WooCommerce
 
 		&,
 		&:hover {
-			background-color: rgba(7, 36, 86, 0.08);
+			background-color: rgba(7, 36, 86, 0.085);
 			color: @body-font-color;
 		}
 
