@@ -1616,8 +1616,6 @@ Blocks
 	&-archives,
 	&-calendar,
 	&-categories,
-	&-cover,
-	&-cover-image,
 	&-embed,
 	&-gallery,
 	&-image,
@@ -1638,6 +1636,27 @@ Blocks
 		}
 	}
 
+	&-cover,
+	&-cover-image {
+		padding: 0;
+
+		&:not(:first-child) {
+			margin-top: 4rem;
+
+			@media only screen and (max-width: 74.99em) {
+				margin-top: 3rem;
+			}
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 4rem;
+
+			@media only screen and (max-width: 74.99em) {
+				margin-bottom: 3rem;
+			}
+		}
+	}
+
 	&-search {
 		label {
 			display: none;
@@ -1645,6 +1664,12 @@ Blocks
 	}
 
 	&-columns {
+		margin-bottom: 2rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
 		&.alignfull {
 			padding-left: 2rem;
 			padding-right: 2rem;
@@ -2740,13 +2765,6 @@ HivePress
 			}
 		}
 
-		&--view-block &__details,
-		&--view-block &__title {
-			&:not(:last-child) {
-				margin-bottom: 0.75rem;
-			}
-		}
-
 		&--view-block &__created-date,
 		&--view-block &__location,
 		&--view-block &__rating {
@@ -2870,6 +2888,14 @@ HivePress
 			&:not(:last-child) {
 				margin-bottom: 1rem;
 			}
+		}
+	}
+	/*--------------------------------------------------------------
+	Listing Tags
+	--------------------------------------------------------------*/
+	&-listing-tags {
+		&:not(:last-child) {
+			margin-bottom: 1.5rem;
 		}
 	}
 	/*--------------------------------------------------------------
