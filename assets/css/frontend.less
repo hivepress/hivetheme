@@ -1907,7 +1907,7 @@ Blocks
 			padding: 0.375rem 0.875rem;
 		}
 
-		&.is-style-outline:not(.has-text-color) &__link {
+		&.is-style-outline &__link:not(.has-text-color) {
 			color: @body-font-color;
 			border-color: @border-color;
 			transition: border-color @animation-duration;
@@ -2360,7 +2360,7 @@ Comments
 		> label {
 			&:first-child {
 				display: block;
-				margin-bottom: 0.75rem;
+				margin-bottom: 0.5rem;
 			}
 		}
 	}
@@ -2765,8 +2765,6 @@ HivePress
 		}
 
 		&__label {
-			margin-bottom: 0.75rem;
-
 			small {
 				color: @secondary-font-color;
 			}
