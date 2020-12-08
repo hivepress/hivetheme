@@ -2600,6 +2600,14 @@ HivePress
 			}
 		}
 
+		&__footer {
+			&:not(:first-child) {
+				@media only screen and (max-width: 47.99em) {
+					margin-top: 3rem;
+				}
+			}
+		}
+
 		&__title {
 			&:not(:last-child) {
 				margin-bottom: 1.75rem;
@@ -2622,6 +2630,15 @@ HivePress
 		&__title {
 			&:not(:last-child) {
 				margin-bottom: 1.5rem;
+			}
+		}
+	}
+
+	&-widget {
+		&--listing-filter,
+		&--vendor-filter {
+			@media only screen and (max-width: 47.99em) {
+				display:none;
 			}
 		}
 	}
