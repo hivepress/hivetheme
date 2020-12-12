@@ -243,6 +243,7 @@ return [
 	'Didact Gothic'                  => 'Didact Gothic',
 	'Diplomata'                      => 'Diplomata',
 	'Diplomata SC'                   => 'Diplomata SC',
+	'DM Sans'                        => 'DM Sans',
 	'Do Hyeon'                       => 'Do Hyeon',
 	'Dokdo'                          => 'Dokdo',
 	'Domine'                         => 'Domine',

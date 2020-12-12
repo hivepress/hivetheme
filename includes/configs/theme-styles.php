@@ -155,7 +155,7 @@ return [
 		'selector'   => '
 			blockquote,
 			.wp-block-quote,
-			.comment.bypostauthor .comment__image
+			.comment.bypostauthor .comment__image img
 		',
 
 		'properties' => [

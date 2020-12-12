@@ -41,8 +41,11 @@ final class Customizer extends Component {
 
 		if ( is_admin() ) {
 
-			// Add editor fonts.
-			add_action( 'admin_init', [ $this, 'add_editor_fonts' ] );
+			// Add editor styles.
+			add_action( 'admin_init', [ $this, 'add_editor_styles' ] );
+
+			// Request theme styles.
+			add_filter( 'pre_http_request', [ $this, 'request_theme_styles' ], 10, 3 );
 
 			// Reset theme styles.
 			add_action( 'customize_save_after', [ $this, 'reset_theme_styles' ] );
@@ -56,6 +59,66 @@ final class Customizer extends Component {
 		}
 
 		parent::__construct( $args );
+	}
+
+	/**
+	 * Gets theme styles.
+	 */
+	protected function get_theme_styles() {
+
+		// Get cached styles.
+		$styles = get_theme_mod( 'custom_styles' );
+
+		if ( false === $styles || is_customize_preview() ) {
+
+			// Get styles.
+			$styles = '';
+
+			foreach ( hivetheme()->get_config( 'theme_styles' ) as $style ) {
+
+				// Get rules.
+				$rules = '';
+
+				foreach ( $style['properties'] as $property ) {
+
+					// Get value.
+					$value = get_theme_mod( $property['theme_mod'] );
+
+					if ( $value ) {
+						switch ( $property['name'] ) {
+
+							// Background image.
+							case 'background-image':
+								$value = 'url(' . esc_url( $value ) . ')';
+
+								break;
+
+							// Font family.
+							case 'font-family':
+								// @todo Remove fallback for font weight.
+								$value = ht\get_first_array_value( explode( ':', $value ) ) . ', sans-serif';
+
+								break;
+						}
+
+						$rules .= $property['name'] . ':' . $value . ';';
+					}
+				}
+
+				// Add rules.
+				if ( $rules ) {
+					$styles .= $style['selector'] . '{' . $rules . '}';
+				}
+			}
+
+			// Minify styles.
+			$styles = preg_replace( '/[\t\r\n]+/', '', $styles );
+
+			// Cache styles.
+			set_theme_mod( 'custom_styles', $styles );
+		}
+
+		return $styles;
 	}
 
 	/**
@@ -198,6 +261,31 @@ final class Customizer extends Component {
 	}
 
 	/**
+	 * Requests theme styles.
+	 *
+	 * @param array  $response Response.
+	 * @param array  $args Arguments.
+	 * @param string $url URL.
+	 * @return array
+	 */
+	public function request_theme_styles( $response, $args, $url ) {
+		if ( 'https://hivetheme-editor-css' === $url ) {
+			$response = [
+				'body'     => $this->get_theme_styles(),
+				'headers'  => new \Requests_Utility_CaseInsensitiveDictionary(),
+				'cookies'  => [],
+				'filename' => null,
+				'response' => [
+					'code'    => 200,
+					'message' => 'OK',
+				],
+			];
+		}
+
+		return $response;
+	}
+
+	/**
 	 * Resets theme styles.
 	 */
 	public function reset_theme_styles() {
@@ -211,61 +299,24 @@ final class Customizer extends Component {
 	 * Adds theme styles.
 	 */
 	public function add_theme_styles() {
+		wp_add_inline_style( 'hivetheme-parent-frontend', $this->get_theme_styles() );
+	}
 
-		// Get cached styles.
-		$styles = get_theme_mod( 'custom_styles' );
+	/**
+	 * Adds editor styles.
+	 */
+	public function add_editor_styles() {
 
-		if ( false === $styles || is_customize_preview() ) {
+		// Enqueue styles.
+		add_editor_style( 'https://hivetheme-editor-css' );
 
-			// Get styles.
-			$styles = '';
+		// Get fonts URL.
+		$url = $this->get_fonts_url();
 
-			foreach ( hivetheme()->get_config( 'theme_styles' ) as $style ) {
-
-				// Get rules.
-				$rules = '';
-
-				foreach ( $style['properties'] as $property ) {
-
-					// Get value.
-					$value = get_theme_mod( $property['theme_mod'] );
-
-					if ( $value ) {
-						switch ( $property['name'] ) {
-
-							// Background image.
-							case 'background-image':
-								$value = 'url(' . esc_url( $value ) . ')';
-
-								break;
-
-							// Font family.
-							case 'font-family':
-								// @todo Remove fallback for font weight.
-								$value = ht\get_first_array_value( explode( ':', $value ) ) . ', sans-serif';
-
-								break;
-						}
-
-						$rules .= $property['name'] . ':' . $value . ';';
-					}
-				}
-
-				// Add rules.
-				if ( $rules ) {
-					$styles .= $style['selector'] . '{' . $rules . '}';
-				}
-			}
-
-			// Minify styles.
-			$styles = preg_replace( '/[\t\r\n]+/', '', $styles );
-
-			// Cache styles.
-			set_theme_mod( 'custom_styles', $styles );
+		// Enqueue fonts.
+		if ( $url ) {
+			add_editor_style( esc_url( $url ) );
 		}
-
-		// Add styles.
-		wp_add_inline_style( 'hivetheme-parent-frontend', $styles );
 	}
 
 	/**
@@ -321,20 +372,6 @@ final class Customizer extends Component {
 		// Enqueue fonts.
 		if ( $url ) {
 			wp_enqueue_style( 'google-fonts', esc_url( $url ), [], null );
-		}
-	}
-
-	/**
-	 * Adds editor fonts.
-	 */
-	public function add_editor_fonts() {
-
-		// Get URL.
-		$url = $this->get_fonts_url();
-
-		// Enqueue fonts.
-		if ( $url ) {
-			add_editor_style( esc_url( $url ) );
 		}
 	}
 }

@@ -29,6 +29,9 @@ final class Import extends Component {
 
 			// Register theme demos.
 			add_filter( 'pt-ocdi/import_files', [ $this, 'register_demos' ] );
+
+			// Reset sidebar widgets.
+			add_action( 'pt-ocdi/widget_importer_before_widgets_import', [ $this, 'reset_widgets' ] );
 		}
 
 		parent::__construct( $args );
@@ -39,5 +42,12 @@ final class Import extends Component {
 	 */
 	public function register_demos() {
 		return hivetheme()->get_config( 'theme_demos' );
+	}
+
+	/**
+	 * Resets sidebar widgets.
+	 */
+	public function reset_widgets() {
+		update_option( 'sidebars_widgets', [] );
 	}
 }
