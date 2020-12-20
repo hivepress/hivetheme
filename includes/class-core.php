@@ -47,9 +47,19 @@ final class Core {
 	 */
 	protected $objects = [];
 
-	// Forbid cloning and duplicating instances.
+	/**
+	 * Forbid cloning instance.
+	 */
 	protected function __clone() {}
-	protected function __wakeup() {}
+
+	/**
+	 * Forbid unserializing instance.
+	 *
+	 * @throws \BadMethodCallException Invalid method.
+	 */
+	public function __wakeup() {
+		throw new \BadMethodCallException();
+	}
 
 	/**
 	 * Class constructor.
