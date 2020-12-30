@@ -22,7 +22,9 @@ return [
 			.comment__author,
 			.hp-review__author,
 			.hp-message--view-block hp-message__sender,
-			.woocommerce ul.product_list_widget li .product-title
+			.woocommerce ul.product_list_widget li .product-title,
+			.editor-post-title__block,
+			.editor-post-title__input
 		',
 
 		'properties' => [

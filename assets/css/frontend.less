@@ -1400,6 +1400,7 @@ Widgets
 				max-width: 100%;
 			}
 
+			button[type=submit],
 			input[type=submit] {
 				display: none;
 			}
@@ -1900,7 +1901,7 @@ Blocks
 			}
 		}
 
-		&.is-style-primary {
+		&.is-style-primary &__link {
 			.button--primary;
 		}
 
@@ -2892,6 +2893,10 @@ HivePress
 			strong {
 				color: @heading-font-color;
 			}
+
+			i {
+				color: @icon-color-hover;
+			}
 		}
 
 		&--view-block &__attributes--secondary &__attribute {
@@ -3012,6 +3017,10 @@ HivePress
 			strong {
 				color: @heading-font-color;
 			}
+
+			i {
+				color: @icon-color-hover;
+			}
 		}
 
 		&--view-block &__attributes--secondary &__attribute {
@@ -3094,6 +3103,10 @@ HivePress
 
 		&__created-date {
 			color: @secondary-font-color;
+		}
+
+		&__listing {
+			white-space: normal;
 		}
 	}
 	/*--------------------------------------------------------------
@@ -3498,7 +3511,7 @@ WooCommerce
 		.product_meta {
 			> span {
 				display: block;
-				font-weight: 600;
+				font-weight: bold;
 				color: @heading-font-color;
 
 				&:not(:last-child) {
