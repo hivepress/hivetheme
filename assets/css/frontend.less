@@ -145,7 +145,6 @@ html {
 html {
 	font-size: 16px;
 	scroll-behavior: smooth;
-	overflow-x: hidden;
 }
 
 body {
@@ -158,10 +157,6 @@ body {
 		margin: 10px 20px;
 		height: auto;
 	}
-}
-
-.editor-styles-wrapper {
-    overflow-x: visible;
 }
 /*--------------------------------------------------------------
 Typography
@@ -895,6 +890,9 @@ Layout
 --------------------------------------------------------------*/
 .site-container {
 	flex: 1 0 auto;
+	overflow-x: hidden;
+	overflow-y: visible;
+	max-width: 100%;
 }
 /*--------------------------------------------------------------
 Header
