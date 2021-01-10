@@ -153,7 +153,9 @@ final class Template extends Component {
 		$output = '';
 
 		// Render page loader.
-		$output .= $this->render_part( 'templates/page/page-loader', [ 'color' => get_theme_mod( 'primary_color' ) ] );
+		if ( get_theme_mod( 'page_loader', true ) ) {
+			$output .= $this->render_part( 'templates/page/page-loader', [ 'color' => get_theme_mod( 'primary_color' ) ] );
+		}
 
 		// Render skip link.
 		$output .= '<a href="#content" class="skip-link screen-reader-text">' . esc_html__( 'Skip to content', 'listinghive' ) . '</a>';
