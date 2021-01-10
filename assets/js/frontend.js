@@ -123,8 +123,6 @@ var hivetheme = {
 	$('body').imagesLoaded(function() {
 
 		// Loader
-		setTimeout(function() {
-			hivetheme.getComponent('loader').fadeOut();
-		}, 100);
+		hivetheme.getComponent('loader').fadeOut();
 	});
 })(jQuery);

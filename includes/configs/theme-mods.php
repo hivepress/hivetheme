@@ -9,7 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 return [
-	'title_tagline' => [
+	'title_tagline'     => [
 		'fields' => [
 			'copyright_notice' => [
 				'label' => esc_html__( 'Copyright Notice', 'listinghive' ),
@@ -18,7 +18,17 @@ return [
 		],
 	],
 
-	'colors'        => [
+	'static_front_page' => [
+		'fields' => [
+			'page_loader' => [
+				'label'   => esc_html__( 'Enable page loading screen', 'listinghive' ),
+				'type'    => 'checkbox',
+				'default' => true,
+			],
+		],
+	],
+
+	'colors'            => [
 		'title'  => esc_html__( 'Colors', 'listinghive' ),
 
 		'fields' => [
@@ -34,7 +44,7 @@ return [
 		],
 	],
 
-	'fonts'         => [
+	'fonts'             => [
 		'title'  => esc_html__( 'Fonts', 'listinghive' ),
 
 		'fields' => [
