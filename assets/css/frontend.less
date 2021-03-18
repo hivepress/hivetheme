@@ -1044,6 +1044,10 @@ Header
 	&__burger {
 		&:not(:last-child) {
 			margin-right: 2rem;
+
+			@media only screen and (max-width:47.99em) {
+				margin-right: 1.5rem;
+			}
 		}
 
 		> a {
@@ -1636,6 +1640,7 @@ Blocks
 	&-media-text,
 	&-pullquote,
 	&-quote.is-style-large,
+	&-group.has-background,
 	&-rss,
 	&-search,
 	&-video {
@@ -1844,6 +1849,12 @@ Blocks
 		}
 	}
 
+	&-group {
+		&.has-background {
+			padding:2rem;
+		}
+	}
+
 	&-cover {
 		color: #fff;
 
@@ -1944,6 +1955,12 @@ Blocks
 		}
 	}
 
+	&-buttons > &-button {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
 	&-file {
 		& &__button {
 			background-color: @ternary-background-color;
@@ -2032,6 +2049,10 @@ Posts
 
 	&__text {
 		.clear-container;
+
+		&:empty {
+			display: none;
+		}
 	}
 
 	&__categories,
@@ -3114,12 +3135,6 @@ HivePress
 	Messages
 	--------------------------------------------------------------*/
 	&-message {
-		&--view-block {
-			background-color: @secondary-background-color;
-			padding: 1.25rem 1.5rem;
-			position: relative;
-		}
-
 		&--view-block &__details {
 			flex-direction: column;
 			align-items: flex-start;
@@ -3135,25 +3150,6 @@ HivePress
 		&--view-block &__sender {
 			font-size: 1.125rem;
 			color: @heading-font-color;
-
-			&::before {
-				border: 8px solid transparent;
-				position: absolute;
-				width: 0;
-				height: 0;
-				content: '';
-				display: block;
-				top: 1.6rem;
-				left: -16px;
-				border-right-color: @secondary-background-color;
-			}
-
-			&--current::before {
-				left: auto;
-				border-right-color: transparent;
-				right: -16px;
-				border-left-color: @secondary-background-color;
-			}
 		}
 
 		&--thread-block &__sent-date,
