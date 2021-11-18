@@ -13,6 +13,7 @@ return [
 	'post-thumbnails',
 	'editor-styles',
 	'wp-block-styles',
+	'responsive-embeds',
 	'align-wide',
 	'hivepress',
 	'wc-product-gallery-lightbox',
