@@ -13,10 +13,21 @@ return [
 	'post-thumbnails',
 	'editor-styles',
 	'wp-block-styles',
+	'responsive-embeds',
 	'align-wide',
 	'hivepress',
 	'wc-product-gallery-lightbox',
 	'wc-product-gallery-slider',
+
+	'html5'       => [
+		'comment-list',
+		'comment-form',
+		'search-form',
+		'gallery',
+		'caption',
+		'style',
+		'script',
+	],
 
 	'woocommerce' => [
 		'thumbnail_image_width' => 400,

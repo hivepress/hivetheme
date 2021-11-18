@@ -14,14 +14,9 @@ return [
 		'src'    => hivetheme()->get_url() . '/assets/js/focus-visible.min.js',
 	],
 
-	'fitvids'       => [
-		'handle' => 'fitvids',
-		'src'    => hivetheme()->get_url() . '/assets/js/jquery.fitvids.min.js',
-	],
-
 	'core_frontend' => [
 		'handle' => 'hivetheme-core-frontend',
 		'src'    => hivetheme()->get_url() . '/assets/js/frontend.min.js',
-		'deps'   => [ 'jquery', 'hoverIntent', 'imagesloaded', 'fitvids', 'comment-reply' ],
+		'deps'   => [ 'jquery', 'hoverIntent', 'imagesloaded', 'comment-reply' ],
 	],
 ];

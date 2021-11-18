@@ -115,9 +115,6 @@ var hivetheme = {
 				});
 			});
 		});
-
-		// Embeds
-		$('body').fitVids();
 	});
 
 	$('body').imagesLoaded(function() {

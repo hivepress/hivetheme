@@ -35,6 +35,10 @@ final class Template extends Component {
 		// Register widget areas.
 		add_action( 'widgets_init', [ $this, 'register_widget_areas' ] );
 
+		// Disable widget editor.
+		add_filter( 'gutenberg_use_widgets_block_editor', '__return_false', 100 );
+		add_filter( 'use_widgets_block_editor', '__return_false' );
+
 		// Render theme header.
 		add_action( 'wp_body_open', [ $this, 'render_theme_header' ] );
 
@@ -71,13 +75,27 @@ final class Template extends Component {
 	 */
 	public function register_widget_areas() {
 		foreach ( hivetheme()->get_config( 'widget_areas' ) as $name => $args ) {
+			$active = true;
+
+			// Check plugin.
 			$plugin = ht\get_array_value( $args, 'plugin' );
 
-			if ( 'hivepress' === $plugin ) {
-				$name = 'hp_' . $name;
+			if ( $plugin ) {
+				if ( strpos( $plugin, 'hivepress' ) === 0 ) {
+					if ( 'hivepress' === $plugin ) {
+						$active = ht\is_plugin_active( $plugin );
+					} else {
+						$active = ht\is_plugin_active( 'hivepress' ) && hivepress()->get_version( preg_replace( '/^hivepress-/', '', $plugin ) );
+					}
+
+					// Add prefix.
+					$name = 'hp_' . $name;
+				} else {
+					$active = ht\is_plugin_active( $plugin );
+				}
 			}
 
-			if ( empty( $plugin ) || ht\is_plugin_active( $plugin ) ) {
+			if ( $active ) {
 				register_sidebar( array_merge( $args, [ 'id' => $name ] ) );
 			}
 		}

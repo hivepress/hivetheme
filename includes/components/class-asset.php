@@ -44,6 +44,9 @@ final class Asset extends Component {
 		// Add script attributes.
 		add_filter( 'script_loader_tag', [ $this, 'add_script_attributes' ], 10, 2 );
 
+		// Wrap embeds.
+		add_filter( 'embed_oembed_html', [ $this, 'wrap_embeds' ], 100, 4 );
+
 		parent::__construct( $args );
 	}
 
@@ -159,5 +162,52 @@ final class Asset extends Component {
 		}
 
 		return $tag;
+	}
+
+	/**
+	 * Wraps responsive embeds.
+	 *
+	 * @param string $html Embed HTML.
+	 * @param string $url Embed URL.
+	 * @param array  $attr HTML attributes.
+	 * @param int    $post_id Post ID.
+	 * @return string
+	 */
+	public function wrap_embeds( $html, $url, $attr, $post_id ) {
+		if ( ! has_blocks( $post_id ) ) {
+			preg_match_all( '/\s(width|height)="(\d+)"/', $html, $matches );
+
+			// Get embed size.
+			$size = ht\get_last_array_value( $matches );
+
+			if ( is_array( $size ) && count( $size ) === 2 ) {
+				$width  = absint( ht\get_first_array_value( $size ) );
+				$height = absint( ht\get_last_array_value( $size ) );
+
+				if ( $width && $height ) {
+
+					// Get aspect ratio.
+					$ratio = array_search(
+						round( $width / $height, 1 ),
+						[
+							'21-9' => 2.3,
+							'18-9' => 2.0,
+							'16-9' => 1.8,
+							'4-3'  => 1.3,
+							'1-1'  => 1.0,
+							'9-16' => 0.6,
+							'1-2'  => 0.5,
+						]
+					);
+
+					// Add responsive wrapper.
+					if ( $ratio ) {
+						$html = '<figure class="wp-block-embed wp-has-aspect-ratio wp-embed-aspect-' . esc_attr( $ratio ) . '"><div class="wp-block-embed__wrapper">' . $html . '</div></figure>';
+					}
+				}
+			}
+		}
+
+		return $html;
 	}
 }

@@ -79,6 +79,23 @@ function get_first_array_value( $array, $default = null ) {
 }
 
 /**
+ * Gets last array item value.
+ *
+ * @param array $array Source array.
+ * @param mixed $default Default value.
+ * @return mixed
+ */
+function get_last_array_value( $array, $default = null ) {
+	$value = $default;
+
+	if ( is_array( $array ) && $array ) {
+		$value = end( $array );
+	}
+
+	return $value;
+}
+
+/**
  * Merges arrays with mixed values.
  *
  * @return array
