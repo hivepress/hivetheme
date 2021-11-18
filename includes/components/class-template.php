@@ -35,6 +35,10 @@ final class Template extends Component {
 		// Register widget areas.
 		add_action( 'widgets_init', [ $this, 'register_widget_areas' ] );
 
+		// Disable widget editor.
+		add_filter( 'gutenberg_use_widgets_block_editor', '__return_false', 100 );
+		add_filter( 'use_widgets_block_editor', '__return_false' );
+
 		// Render theme header.
 		add_action( 'wp_body_open', [ $this, 'render_theme_header' ] );
 
