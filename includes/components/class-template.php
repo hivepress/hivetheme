@@ -75,13 +75,27 @@ final class Template extends Component {
 	 */
 	public function register_widget_areas() {
 		foreach ( hivetheme()->get_config( 'widget_areas' ) as $name => $args ) {
+			$active = true;
+
+			// Check plugin.
 			$plugin = ht\get_array_value( $args, 'plugin' );
 
-			if ( 'hivepress' === $plugin ) {
-				$name = 'hp_' . $name;
+			if ( $plugin ) {
+				if ( strpos( $plugin, 'hivepress' ) === 0 ) {
+					if ( 'hivepress' === $plugin ) {
+						$active = ht\is_plugin_active( $plugin );
+					} else {
+						$active = ht\is_plugin_active( 'hivepress' ) && hivepress()->get_version( preg_replace( '/^hivepress-/', '', $plugin ) );
+					}
+
+					// Add prefix.
+					$name = 'hp_' . $name;
+				} else {
+					$active = ht\is_plugin_active( $plugin );
+				}
 			}
 
-			if ( empty( $plugin ) || ht\is_plugin_active( $plugin ) ) {
+			if ( $active ) {
 				register_sidebar( array_merge( $args, [ 'id' => $name ] ) );
 			}
 		}
