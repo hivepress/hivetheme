@@ -19,6 +19,16 @@ return [
 	'wc-product-gallery-lightbox',
 	'wc-product-gallery-slider',
 
+	'html5'       => [
+		'comment-list',
+		'comment-form',
+		'search-form',
+		'gallery',
+		'caption',
+		'style',
+		'script',
+	],
+
 	'woocommerce' => [
 		'thumbnail_image_width' => 400,
 		'single_image_width'    => 600,
