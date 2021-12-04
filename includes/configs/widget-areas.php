@@ -71,6 +71,15 @@ return [
 		'plugin'        => 'hivepress-requests',
 	],
 
+	'booking_view_sidebar'  => [
+		'name'          => hivetheme()->hivepress->get_string( 'booking' ) . ' ' . sprintf( '(%s)', esc_html_x( 'sidebar', 'area', 'listinghive' ) ),
+		'before_widget' => '<div id="%1$s" class="widget widget--sidebar %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget__title">',
+		'after_title'   => '</h3>',
+		'plugin'        => 'hivepress-bookings',
+	],
+
 	'user_account_sidebar'  => [
 		'name'          => esc_html__( 'Account', 'listinghive' ) . ' ' . sprintf( '(%s)', esc_html_x( 'sidebar', 'area', 'listinghive' ) ),
 		'before_widget' => '<div id="%1$s" class="widget widget--sidebar %2$s">',
