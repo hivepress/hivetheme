@@ -14,11 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Generate POT
-        uses: hivepress/action-generate-pot@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Compile LESS
         uses: hivepress/action-compile-assets/less@v1.1.0
         with:
