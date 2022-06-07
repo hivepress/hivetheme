@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HiveTheme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-10 19:32+0000\n"
+"POT-Creation-Date: 2022-06-06 10:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,17 +13,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.4.3; wp-5.5.1"
+"X-Loco-Version: 2.6.2; wp-6.0\n"
+"X-Domain: listinghive"
 
 #. Description of the plugin
 msgid "A framework for HivePress themes."
 msgstr ""
 
-#: includes/configs/widget-areas.php:57
+#: includes/configs/widget-areas.php:84
 msgid "Account"
 msgstr ""
 
-#: includes/configs/widget-areas.php:75
+#: includes/configs/widget-areas.php:102
 msgctxt "area"
 msgid "footer"
 msgstr ""
@@ -31,7 +32,8 @@ msgstr ""
 #: includes/configs/widget-areas.php:13 includes/configs/widget-areas.php:21
 #: includes/configs/widget-areas.php:30 includes/configs/widget-areas.php:39
 #: includes/configs/widget-areas.php:48 includes/configs/widget-areas.php:57
-#: includes/configs/widget-areas.php:66
+#: includes/configs/widget-areas.php:66 includes/configs/widget-areas.php:75
+#: includes/configs/widget-areas.php:84 includes/configs/widget-areas.php:93
 msgctxt "area"
 msgid "sidebar"
 msgstr ""
@@ -100,14 +102,14 @@ msgstr ""
 msgid "Secondary Color"
 msgstr ""
 
-#: includes/configs/widget-areas.php:66
+#: includes/configs/widget-areas.php:93
 msgid "Shop"
 msgstr ""
 
-#: includes/configs/widget-areas.php:75
+#: includes/configs/widget-areas.php:102
 msgid "Site"
 msgstr ""
 
-#: includes/components/class-template.php:161
+#: includes/components/class-template.php:179
 msgid "Skip to content"
 msgstr ""

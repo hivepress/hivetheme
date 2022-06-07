@@ -269,7 +269,7 @@ final class Customizer extends Component {
 	 * @return array
 	 */
 	public function request_theme_styles( $response, $args, $url ) {
-		if ( 'https://hivetheme-editor-css' === $url ) {
+		if ( strpos( $url, 'https://hivetheme-editor-css' ) === 0 ) {
 			$response = [
 				'body'     => $this->get_theme_styles(),
 				'headers'  => new \Requests_Utility_CaseInsensitiveDictionary(),
