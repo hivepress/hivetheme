@@ -94,7 +94,7 @@ final class HivePress extends Component {
 					/* translators: 1: theme name, 2: link URL. */
 					hp\sanitize_html( __( 'If you want to start with the %1$s demo content, please follow <a href="%2$s" target="_blank">this screencast</a> to import it.', 'listinghive' ) ),
 					hivetheme()->get_name( 'parent' ),
-					esc_url( 'https://hivepress.io/docs/themes/' . get_template() . '/#importing-demo-content' )
+					esc_url( 'https://hivepress.io/docs/themes/' . get_template() . '/?article=import' )
 				),
 			];
 		}
