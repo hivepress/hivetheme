@@ -19,20 +19,20 @@ Variables
 /*--------------------------------------------------------------
 Mixins
 --------------------------------------------------------------*/
-.image-container {
+.hp-image-container {
 	img {
 		display: block;
 		width: 100%;
 	}
 }
 
-.center-container {
+.hp-center-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.clear-container {
+.hp-clear-container {
 	&::after {
 		display: table;
 		clear: both;
@@ -40,7 +40,7 @@ Mixins
 	}
 }
 
-.container-overlay {
+.hp-container-overlay {
 	content: '';
 	display: block;
 	position: absolute;
@@ -50,7 +50,7 @@ Mixins
 	bottom: 0;
 }
 
-.unstyled-list {
+.hp-unstyled-list {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -60,7 +60,7 @@ Mixins
 	}
 }
 
-.font-icon {
+.hp-font-icon {
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 900;
 	font-style: normal;
@@ -72,7 +72,7 @@ Mixins
 	text-rendering: auto;
 }
 
-.range-slider {
+.hp-range-slider {
 	.ui {
 		&-slider-horizontal {
 			height: 5px;
@@ -803,7 +803,7 @@ Buttons
 	background-color: rgba(7, 36, 86, 0.085);
 
 	&::before {
-		.container-overlay;
+		.hp-container-overlay;
 		opacity: 0;
 		background-color: rgba(7, 36, 86,.045);
 		border-radius: inherit;
@@ -815,7 +815,7 @@ Buttons
 	}
 
 	&::after {
-		.font-icon;
+		.hp-font-icon;
 		font-size: 22px;
 		position: absolute;
 		top: 50%;
@@ -944,7 +944,7 @@ Header
 		}
 
 		ul {
-			.unstyled-list;
+			.hp-unstyled-list;
 
 			li {
 				position: relative;
@@ -954,7 +954,7 @@ Header
 
 				&.menu-item-has-children {
 					&::after {
-						.font-icon;
+						.hp-font-icon;
 						content: '\f105';
 						color: @icon-color;
 						font-size: 16px;
@@ -1074,7 +1074,7 @@ Header
 		}
 
 		ul {
-			.unstyled-list;
+			.hp-unstyled-list;
 			display: none;
 
 			li {
@@ -1086,7 +1086,7 @@ Header
 
 				&.menu-item-has-children {
 					&::after {
-						.font-icon;
+						.hp-font-icon;
 						content: '\f105';
 						color: @icon-color;
 						font-size: 18px;
@@ -1130,7 +1130,7 @@ Header
 			padding: 1.5rem 2rem;
 
 			&::before {
-				.font-icon;
+				.hp-font-icon;
 				font-size: 18px;
 				position: absolute;
 				top: 0.75rem;
@@ -1182,7 +1182,7 @@ Header
 }
 
 .header-logo {
-	.image-container;
+	.hp-image-container;
 
 	&__name {
 		line-height: 1.25;
@@ -1311,7 +1311,7 @@ Footer
 
 	&__menu {
 		ul {
-			.unstyled-list;
+			.hp-unstyled-list;
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: flex-end;
@@ -1348,7 +1348,7 @@ Modal
 Loader
 --------------------------------------------------------------*/
 .site-loader {
-	.center-container;
+	.hp-center-container;
 	position: fixed;
 	z-index: 10000;
 	top: 0;
@@ -1401,7 +1401,7 @@ Widgets
 			align-items: center;
 
 			&::before {
-				.font-icon;
+				.hp-font-icon;
 				content: '\f002';
 				color: @icon-color;
 				font-size: 18px;
@@ -1449,7 +1449,7 @@ Widgets
 	&_recent_comments,
 	&_rss {
 		ul {
-			.unstyled-list;
+			.hp-unstyled-list;
 
 			li {
 				position: relative;
@@ -1460,7 +1460,7 @@ Widgets
 				}
 
 				&::before {
-					.font-icon;
+					.hp-font-icon;
 					color: @icon-color;
 					position: absolute;
 					left: 0;
@@ -1558,7 +1558,7 @@ Widgets
 		color: @secondary-font-color;
 
 		&::before {
-			.font-icon;
+			.hp-font-icon;
 			color: @icon-color;
 			position: absolute;
 			left: 0;
@@ -1890,7 +1890,7 @@ Blocks
 		}
 
 		ul {
-			.unstyled-list;
+			.hp-unstyled-list;
 		}
 
 		.blocks-gallery-item {
@@ -2017,7 +2017,7 @@ Pages
 	}
 
 	&__text {
-		.clear-container;
+		.hp-clear-container;
 	}
 }
 /*--------------------------------------------------------------
@@ -2054,11 +2054,11 @@ Posts
 	}
 
 	&__image {
-		.image-container;
+		.hp-image-container;
 	}
 
 	&__text {
-		.clear-container;
+		.hp-clear-container;
 
 		&:empty {
 			display: none;
@@ -2227,7 +2227,7 @@ Comments
 	}
 
 	ul {
-		.unstyled-list;
+		.hp-unstyled-list;
 
 		li[id^='comment-'] {
 			&:not(:last-child) {
@@ -2264,7 +2264,7 @@ Comments
 	}
 
 	&__image {
-		.image-container;
+		.hp-image-container;
 		margin-right: 1.5rem;
 		flex: 0 0 4rem;
 
@@ -2471,7 +2471,7 @@ Pagination
 	ul li a,
 	ul li span.current,
 	ul li span.dots {
-		.center-container;
+		.hp-center-container;
 		color: inherit;
 
 		&.page-numbers:not(.prev):not(.next),
@@ -2485,7 +2485,7 @@ Pagination
 			color: @icon-color;
 
 			&::before {
-				.font-icon;
+				.hp-font-icon;
 				font-size: 16px;
 			}
 
@@ -3353,7 +3353,7 @@ WooCommerce
 			}
 
 			&::after {
-				.font-icon;
+				.hp-font-icon;
 				content: '\f1ce';
 				animation: spin 0.5s linear infinite;
 				top: 50%;
@@ -3584,8 +3584,7 @@ WooCommerce
 				margin: 0;
 
 				&::before {
-					border-bottom-color: @secondary-background-color;
-					top: -1em;
+					display: none;
 				}
 			}
 		}
