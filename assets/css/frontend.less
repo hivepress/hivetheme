@@ -711,6 +711,14 @@ table {
 		vertical-align: top;
 		border: 1px solid @border-color;
 		border-width: 0 0 1px;
+
+		&:first-child {
+			padding-left: 0;
+		}
+
+		&:last-child {
+			padding-right: 0;
+		}
 	}
 
 	th {
@@ -740,41 +748,41 @@ table {
 		}
 	}
 
-	&.wp-block-table,
-	&.wp-calendar-table {
+	tbody {
+		tr:last-child {
+			td,
+			th {
+				border-bottom-width: 0;
+			}
+		}
+	}
+}
+
+.wp-block-table,
+.wp-calendar-table {
+	table {
 		td,
 		th {
 			border-color: @border-color;
 			padding: 0.5rem 0.75rem;
 		}
 
-		&.is-style-stripes {
-			border-bottom-color: @border-color;
-
-			tr:nth-child(odd) {
-				background-color: @secondary-background-color;
-			}
-		}
-	}
-
-	&:not(.wp-block-table):not(.wp-calendar-table) {
 		tbody {
 			tr:last-child {
 				td,
 				th {
-					border-bottom-width: 0;
+					border-bottom-width: 1px;
 				}
 			}
 		}
+	}
 
-		td,
-		th {
-			&:first-child {
-				padding-left: 0;
-			}
+	&.is-style-stripes {
+		border-bottom-color: @border-color;
 
-			&:last-child {
-				padding-right: 0;
+		table {
+			tr:nth-child(odd) {
+				background-color: @secondary-background-color;
 			}
 		}
 	}
