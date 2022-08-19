@@ -469,6 +469,7 @@ return [
 	'Itim'                           => 'Itim',
 	'Jacques Francois'               => 'Jacques Francois',
 	'Jacques Francois Shadow'        => 'Jacques Francois Shadow',
+	'Plus Jakarta Sans'              => 'Plus Jakarta Sans',
 	'Jaldi'                          => 'Jaldi',
 	'JetBrains Mono'                 => 'JetBrains Mono',
 	'Jim Nightshade'                 => 'Jim Nightshade',
