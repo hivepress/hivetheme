@@ -498,8 +498,8 @@ Media
 .wp-caption {
 	max-width: 100%;
 
-	> a > img,
-	> img {
+	> img,
+	> a > img {
 		width: 100%;
 		display: block;
 	}
@@ -832,6 +832,7 @@ Buttons
 	&[data-state=loading] {
 		cursor: default;
 		color: transparent;
+		pointer-events: none;
 
 		&::after {
 			display: block;
@@ -1578,8 +1579,8 @@ Widgets
 		&.current-menu-item,
 		&.is-active,
 		&:hover {
-			> a,
-			&::before {
+			&::before,
+			> a {
 				color: @primary-font-color;
 			}
 		}
@@ -2464,10 +2465,10 @@ Pagination
 		align-items: center;
 	}
 
-	> a,
+	> span,
 	.nav-links > a,
 	.nav-links > span,
-	> span,
+	> a,
 	ul li a,
 	ul li span.current,
 	ul li span.dots {
@@ -2503,10 +2504,10 @@ Pagination
 		}
 	}
 
-	> a,
+	> span,
 	.nav-links > a,
 	.nav-links > span,
-	> span,
+	> a,
 	ul li {
 		&.page-numbers:not(:last-child),
 		&:not(:last-child) {
@@ -2514,8 +2515,8 @@ Pagination
 		}
 	}
 
-	> a,
 	.nav-links > a,
+	> a,
 	ul li a {
 		transition: color @animation-duration;
 
@@ -3380,8 +3381,8 @@ WooCommerce
 		}
 	}
 
-	#add_payment_method,
 	&-cart,
+	#add_payment_method,
 	&-checkout {
 		.wc-proceed-to-checkout {
 			a.checkout-button {
@@ -3562,8 +3563,8 @@ WooCommerce
 	/*--------------------------------------------------------------
 	Checkout
 	--------------------------------------------------------------*/
-	&-cart,
 	#add_payment_method,
+	&-cart,
 	&-checkout {
 		table.cart {
 			img {
