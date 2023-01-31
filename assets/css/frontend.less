@@ -1056,11 +1056,7 @@ Header
 			}
 		}
 
-		&-notice-wrapper {
-			display: inline-flex !important;
-			align-items: center;
-
-			small{
+		&-notice-wrapper small{
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -1074,7 +1070,6 @@ Header
 				font-size: 80%;
 				line-height: 1;
 				white-space: nowrap;
-			}
 		}
 
 		> a {
@@ -1085,7 +1080,8 @@ Header
 				color: @icon-color-hover;
 			}
 			@media only screen and (max-width: 74.99em) {
-				display: block;
+				display: inline-flex !important;
+				align-items: center;
 			}
 
 			i {
