@@ -1,21 +1,22 @@
 /*--------------------------------------------------------------
 Variables
 --------------------------------------------------------------*/
-@heading-font-color: rgba(15,23,39,.85);
-@heading-font-color-hover: rgb(15,23,39,1);
-@body-font-color: rgba(15,23,39, .65);
+@heading-font-color: rgba(15, 23, 39, .85);
+@heading-font-color-hover: rgb(15, 23, 39, 1);
+@body-font-color: rgba(15, 23, 39, .65);
 @primary-font-color: #ffc107;
 @primary-background-color: #ffc107;
-@secondary-font-color: rgba(15,23,39, .45);
+@secondary-font-color: rgba(15, 23, 39, .45);
 @secondary-background-color: #f6f9fc;
 @ternary-font-color: #15cd72;
 @ternary-background-color: #15cd72;
 @border-color: rgba(7, 36, 86, .075);
-@border-color-hover: rgba(7, 36, 86,0.125);
-@icon-color: rgba(7, 36, 86,0.25);
-@icon-color-hover: rgba(7, 36, 86,0.35);
+@border-color-hover: rgba(7, 36, 86, 0.125);
+@icon-color: rgba(7, 36, 86, 0.25);
+@icon-color-hover: rgba(7, 36, 86, 0.35);
 @box-shadow: 0 2px 4px 0 rgba(7, 36, 86, .075);
 @animation-duration: 0.25s;
+
 /*--------------------------------------------------------------
 Mixins
 --------------------------------------------------------------*/
@@ -134,6 +135,7 @@ Mixins
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Normalize
 --------------------------------------------------------------*/
@@ -161,6 +163,7 @@ body {
 		margin: 10px 20px;
 	}
 }
+
 /*--------------------------------------------------------------
 Typography
 --------------------------------------------------------------*/
@@ -363,6 +366,7 @@ hr {
 	margin: 2rem 0;
 	background-color: @border-color;
 }
+
 /*--------------------------------------------------------------
 Accessibility
 --------------------------------------------------------------*/
@@ -408,6 +412,7 @@ Accessibility
 		outline: none;
 	}
 }
+
 /*--------------------------------------------------------------
 Alignments
 --------------------------------------------------------------*/
@@ -449,6 +454,7 @@ Alignments
 
 .alignwide {
 	width: auto;
+
 	@media only screen and (min-width: 48em) {
 		margin-left: calc(25% - 25vw);
 		margin-right: calc(25% - 25vw);
@@ -463,28 +469,31 @@ Alignments
 	margin-left: -50vw;
 	margin-right: -50vw;
 }
+
 /*--------------------------------------------------------------
 Media
 --------------------------------------------------------------*/
 .gallery {
 	&:not(:first-child) {
-		margin-top: 2rem!important;
+		margin-top: 2rem !important;
 	}
 
 	&-item {
-		margin-top: 0!important;
+		margin-top: 0 !important;
 		margin-bottom: 2rem;
+
 		@media only screen and (max-width: 74.99em) {
-			width: 33.33%!important;
+			width: 33.33% !important;
 		}
+
 		@media only screen and (max-width: 47.99em) {
-			width: 100%!important;
+			width: 100% !important;
 		}
 	}
 
 	&-icon {
 		img {
-			border: none!important;
+			border: none !important;
 			display: block;
 			margin: 0 auto;
 		}
@@ -498,8 +507,8 @@ Media
 .wp-caption {
 	max-width: 100%;
 
-	> a > img,
-	> img {
+	>a>img,
+	>img {
 		width: 100%;
 		display: block;
 	}
@@ -514,7 +523,7 @@ Media
 
 .mejs {
 	&-audio &-button {
-		> button {
+		>button {
 			border-radius: 0;
 
 			&::before {
@@ -523,6 +532,7 @@ Media
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Forms
 --------------------------------------------------------------*/
@@ -697,6 +707,7 @@ fieldset {
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Tables
 --------------------------------------------------------------*/
@@ -728,6 +739,7 @@ table {
 
 	tfoot,
 	thead {
+
 		td,
 		th {
 			color: @heading-font-color;
@@ -735,6 +747,7 @@ table {
 	}
 
 	thead {
+
 		td,
 		th {
 			border-width: 0 0 2px;
@@ -742,6 +755,7 @@ table {
 	}
 
 	tfoot {
+
 		td,
 		th {
 			border-width: 2px 0 0;
@@ -750,6 +764,7 @@ table {
 
 	tbody {
 		tr:last-child {
+
 			td,
 			th {
 				border-bottom-width: 0;
@@ -761,6 +776,7 @@ table {
 .wp-block-table,
 .wp-calendar-table {
 	table {
+
 		td,
 		th {
 			border-color: @border-color;
@@ -769,6 +785,7 @@ table {
 
 		tbody {
 			tr:last-child {
+
 				td,
 				th {
 					border-bottom-width: 1px;
@@ -787,6 +804,7 @@ table {
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Buttons
 --------------------------------------------------------------*/
@@ -805,7 +823,7 @@ Buttons
 	&::before {
 		.hp-container-overlay;
 		opacity: 0;
-		background-color: rgba(7, 36, 86,.045);
+		background-color: rgba(7, 36, 86, .045);
 		border-radius: inherit;
 		transition: opacity @animation-duration;
 	}
@@ -849,19 +867,19 @@ Buttons
 	color: #fff;
 
 	&::before {
-		background-color: rgba(255,255,255,.1);
+		background-color: rgba(255, 255, 255, .1);
 	}
 
 	&.loading,
 	&[data-state=loading] {
 		&::before {
-			background-color: rgba(255,255,255,.25);
+			background-color: rgba(255, 255, 255, .25);
 			opacity: 1;
 		}
 	}
 
 	&::after {
-		color: rgba(255,255,255,.8);
+		color: rgba(255, 255, 255, .8);
 	}
 }
 
@@ -896,6 +914,7 @@ button {
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Layout
 --------------------------------------------------------------*/
@@ -904,6 +923,7 @@ Layout
 	overflow: hidden;
 	max-width: 100%;
 }
+
 /*--------------------------------------------------------------
 Header
 --------------------------------------------------------------*/
@@ -935,6 +955,7 @@ Header
 		display: flex;
 		align-self: stretch;
 		margin: -1rem -1rem -1rem 0;
+
 		@media only screen and (max-width: 74.99em) {
 			display: none;
 		}
@@ -966,8 +987,8 @@ Header
 					transition: color @animation-duration;
 				}
 
-				&.active > a,
-				&.current-menu-item > a,
+				&.active>a,
+				&.current-menu-item>a,
 				a:hover {
 					color: @primary-font-color;
 				}
@@ -996,13 +1017,13 @@ Header
 					}
 				}
 
-				&:focus-within > ul {
+				&:focus-within>ul {
 					display: block;
 				}
 			}
 		}
 
-		> ul {
+		>ul {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: flex-end;
@@ -1013,7 +1034,7 @@ Header
 				padding-bottom: 0.75rem;
 			}
 
-			> li {
+			>li {
 				padding: 0 1rem;
 
 				&.menu-item-has-children::after {
@@ -1035,7 +1056,7 @@ Header
 				}
 			}
 
-			&.wrap > li {
+			&.wrap>li {
 				padding-top: 0.25rem;
 				padding-bottom: 0.25rem;
 
@@ -1051,18 +1072,20 @@ Header
 	&__burger {
 		&:not(:last-child) {
 			margin-right: 2rem;
+
 			@media only screen and (max-width:47.99em) {
 				margin-right: 1.5rem;
 			}
 		}
 
-		> a {
+		>a {
 			color: @icon-color;
 			display: none;
 
 			&:hover {
 				color: @icon-color-hover;
 			}
+
 			@media only screen and (max-width: 74.99em) {
 				display: block;
 			}
@@ -1111,13 +1134,13 @@ Header
 					display: none;
 				}
 
-				&:focus-within > ul {
+				&:focus-within>ul {
 					display: block;
 				}
 			}
 		}
 
-		> ul {
+		>ul {
 			position: fixed;
 			z-index: 10000;
 			top: 0;
@@ -1147,7 +1170,7 @@ Header
 				}
 			}
 
-			> li {
+			>li {
 				padding: 0.25rem 0;
 
 				&:not(:last-child) {
@@ -1173,7 +1196,7 @@ Header
 					}
 				}
 
-				> a {
+				>a {
 					font-size: 1.125rem;
 				}
 			}
@@ -1213,6 +1236,7 @@ Header
 		@media only screen and (min-width: 48em) {
 			padding: 6rem 0;
 		}
+
 		@media only screen and (min-width: 75em) {
 			padding: 9rem 0;
 		}
@@ -1234,12 +1258,14 @@ Header
 			@media only screen and (min-width: 48em) {
 				font-size: 2.625rem;
 			}
+
 			@media only screen and (min-width: 75em) {
 				font-size: 3rem;
 			}
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Content
 --------------------------------------------------------------*/
@@ -1247,6 +1273,7 @@ Content
 	padding: 4rem 0;
 	position: relative;
 	z-index: 1;
+
 	@media only screen and (max-width: 74.99em) {
 		padding: 3rem 0;
 	}
@@ -1259,6 +1286,7 @@ Content
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Footer
 --------------------------------------------------------------*/
@@ -1276,8 +1304,9 @@ Footer
 		padding-bottom: 3rem;
 		margin-bottom: 2rem;
 	}
+
 	@media only screen and (max-width: 47.99em) {
-		> div > div {
+		>div>div {
 			&:not(:last-child) {
 				margin-bottom: 2rem;
 			}
@@ -1288,6 +1317,7 @@ Footer
 .footer-navbar {
 	display: flex;
 	justify-content: space-between;
+
 	@media only screen and (max-width: 47.99em) {
 		flex-direction: column;
 		align-items: center;
@@ -1336,6 +1366,7 @@ Footer
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Modal
 --------------------------------------------------------------*/
@@ -1344,6 +1375,7 @@ Modal
 		padding: 2.5rem;
 	}
 }
+
 /*--------------------------------------------------------------
 Loader
 --------------------------------------------------------------*/
@@ -1365,6 +1397,7 @@ Loader
 		animation: spin 0.5s linear infinite;
 	}
 }
+
 @keyframes hide {
 	from {
 		opacity: 1;
@@ -1375,6 +1408,7 @@ Loader
 		z-index: -1;
 	}
 }
+
 @keyframes spin {
 	from {
 		transform: rotate(0deg);
@@ -1384,6 +1418,7 @@ Loader
 		transform: rotate(360deg);
 	}
 }
+
 /*--------------------------------------------------------------
 Widgets
 --------------------------------------------------------------*/
@@ -1578,7 +1613,8 @@ Widgets
 		&.current-menu-item,
 		&.is-active,
 		&:hover {
-			> a,
+
+			>a,
 			&::before {
 				color: @primary-font-color;
 			}
@@ -1625,6 +1661,7 @@ Widgets
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Blocks
 --------------------------------------------------------------*/
@@ -1669,6 +1706,7 @@ Blocks
 
 		&:not(:first-child) {
 			margin-top: 4rem;
+
 			@media only screen and (max-width: 74.99em) {
 				margin-top: 3rem;
 			}
@@ -1676,13 +1714,15 @@ Blocks
 
 		&:not(:last-child) {
 			margin-bottom: 4rem;
+
 			@media only screen and (max-width: 74.99em) {
 				margin-bottom: 3rem;
 			}
 		}
 
-		&.alignfull + &.alignfull {
+		&.alignfull+&.alignfull {
 			margin-top: -4rem;
+
 			@media screen and (max-width: 74.99em) {
 				margin-top: -3rem;
 			}
@@ -1876,6 +1916,7 @@ Blocks
 			width: 100%;
 			max-width: 75.25rem;
 			padding: 4rem 2rem;
+
 			@media screen and (max-width: 74.99em) {
 				padding-top: 3rem;
 				padding-bottom: 3rem;
@@ -1930,7 +1971,7 @@ Blocks
 		&.is-style-outline &__link,
 		&.is-style-primary &__link {
 			&::before {
-				background-color: rgba(255,255,255,.1);
+				background-color: rgba(255, 255, 255, .1);
 			}
 		}
 
@@ -1965,7 +2006,7 @@ Blocks
 		}
 	}
 
-	&-buttons > &-button {
+	&-buttons>&-button {
 		&:last-child {
 			margin-bottom: 0;
 		}
@@ -2002,11 +2043,13 @@ Blocks
 }
 
 .editor-post-title {
+
 	&__block,
 	&__input {
 		color: @heading-font-color;
 	}
 }
+
 /*--------------------------------------------------------------
 Pages
 --------------------------------------------------------------*/
@@ -2020,6 +2063,7 @@ Pages
 		.hp-clear-container;
 	}
 }
+
 /*--------------------------------------------------------------
 Posts
 --------------------------------------------------------------*/
@@ -2099,7 +2143,7 @@ Posts
 	&__details {
 		margin-bottom: -.75rem;
 
-		> * {
+		>* {
 			display: flex;
 			align-items: center;
 			color: @secondary-font-color;
@@ -2181,16 +2225,17 @@ Posts
 				color: @primary-font-color;
 
 				&:first-child {
-					transform: translateX(-5px;);
+					transform: translateX(-5px; );
 				}
 
 				&:last-child {
-					transform: translateX(5px;);
+					transform: translateX(5px; );
 				}
 			}
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Tags
 --------------------------------------------------------------*/
@@ -2201,7 +2246,7 @@ Tags
 	margin-bottom: -.5rem;
 
 	a {
-		font-size: 1rem!important;
+		font-size: 1rem !important;
 		margin-bottom: 0.5rem;
 
 		&:not(:last-child) {
@@ -2209,12 +2254,14 @@ Tags
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Comments
 --------------------------------------------------------------*/
 #comments {
 	&:not(:first-child) {
 		margin-top: 4rem;
+
 		@media only screen and (max-width: 47.99em) {
 			margin-top: 3rem;
 		}
@@ -2236,11 +2283,12 @@ Comments
 		}
 	}
 
-	> ul {
-		> li {
+	>ul {
+		>li {
 			ul {
 				padding-left: 5.5rem;
 				margin-top: 2rem;
+
 				@media only screen and (max-width: 47.99em) {
 					padding-left: 0;
 				}
@@ -2298,7 +2346,7 @@ Comments
 		align-items: center;
 		color: @secondary-font-color;
 
-		> * {
+		>* {
 			margin-bottom: 0.5rem;
 
 			&:not(:last-child) {
@@ -2324,11 +2372,12 @@ Comments
 	}
 
 	&__text {
+
 		ol,
 		ul {
 			margin-left: 2rem;
-			padding-left: 0!important;
-			margin-top: 0!important;
+			padding-left: 0 !important;
+			margin-top: 0 !important;
 
 			&:not(:last-child) {
 				margin-bottom: 1rem;
@@ -2342,7 +2391,7 @@ Comments
 
 			ol,
 			ul {
-				margin-top: 0.5rem!important;
+				margin-top: 0.5rem !important;
 			}
 		}
 
@@ -2357,7 +2406,7 @@ Comments
 }
 
 .comment-respond {
-	.comments > ul > & {
+	.comments>ul>& {
 		&:not(:last-child) {
 			margin-bottom: 2rem;
 		}
@@ -2400,7 +2449,7 @@ Comments
 		display: block;
 		margin-bottom: 1.5rem;
 
-		> label {
+		>label {
 			&:first-child {
 				display: block;
 				margin-bottom: 0.5rem;
@@ -2443,6 +2492,7 @@ Comments
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 Pagination
 --------------------------------------------------------------*/
@@ -2464,10 +2514,10 @@ Pagination
 		align-items: center;
 	}
 
-	> a,
-	.nav-links > a,
-	.nav-links > span,
-	> span,
+	>a,
+	.nav-links>a,
+	.nav-links>span,
+	>span,
 	ul li a,
 	ul li span.current,
 	ul li span.dots {
@@ -2503,19 +2553,20 @@ Pagination
 		}
 	}
 
-	> a,
-	.nav-links > a,
-	.nav-links > span,
-	> span,
+	>a,
+	.nav-links>a,
+	.nav-links>span,
+	>span,
 	ul li {
+
 		&.page-numbers:not(:last-child),
 		&:not(:last-child) {
 			margin-right: 0.5rem;
 		}
 	}
 
-	> a,
-	.nav-links > a,
+	>a,
+	.nav-links>a,
 	ul li a {
 		transition: color @animation-duration;
 
@@ -2524,6 +2575,7 @@ Pagination
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 HivePress
 --------------------------------------------------------------*/
@@ -2564,6 +2616,7 @@ HivePress
 		&--site-header {
 			button {
 				white-space: nowrap;
+
 				@media only screen and (max-width: 47.99em) {
 					padding: 0.25rem 0.56rem;
 				}
@@ -2620,6 +2673,7 @@ HivePress
 
 	&-result-count {
 		color: @secondary-font-color;
+
 		@media only screen and (max-width: 47.99em) {
 			&:not(:last-child) {
 				margin-bottom: 1rem;
@@ -2666,6 +2720,7 @@ HivePress
 	}
 
 	&-widget {
+
 		&--listing-filter,
 		&--vendor-filter {
 			@media only screen and (max-width: 47.99em) {
@@ -2673,6 +2728,7 @@ HivePress
 			}
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Forms
 	--------------------------------------------------------------*/
@@ -2688,6 +2744,7 @@ HivePress
 		&--narrow &__button {
 			.button--large;
 		}
+
 		@media only screen and (max-width: 47.99em) {
 			&__button {
 				.button--large;
@@ -2697,6 +2754,7 @@ HivePress
 		&--narrow &__action {
 			line-height: 1.5;
 		}
+
 		@media only screen and (max-width: 47.99em) {
 			&__action {
 				line-height: 1.5;
@@ -2741,6 +2799,15 @@ HivePress
 			}
 		}
 
+		&--checkbox&--readonly {
+			pointer-events: none;
+
+			input[type="checkbox"]:checked+span::before {
+				background-color: #ccc;
+				border-color: #ccc;
+			}
+		}
+
 		input[type=checkbox],
 		input[type=radio] {
 			opacity: 0;
@@ -2748,7 +2815,7 @@ HivePress
 			margin: 0;
 			visibility: hidden;
 
-			& + span {
+			&+span {
 				position: relative;
 				display: inline-block;
 				cursor: pointer;
@@ -2777,7 +2844,7 @@ HivePress
 				}
 			}
 
-			&:checked + span {
+			&:checked+span {
 				&::before {
 					border-color: @ternary-background-color;
 				}
@@ -2789,7 +2856,7 @@ HivePress
 		}
 
 		input[type=checkbox] {
-			& + span {
+			&+span {
 				padding-left: 1.75rem;
 
 				&::before {
@@ -2806,7 +2873,7 @@ HivePress
 				}
 			}
 
-			&:checked + span {
+			&:checked+span {
 				&::before {
 					background-color: @ternary-background-color;
 				}
@@ -2814,7 +2881,7 @@ HivePress
 		}
 
 		input[type=radio] {
-			& + span {
+			&+span {
 				padding-left: 1.65rem;
 
 				&::before {
@@ -2836,6 +2903,7 @@ HivePress
 			}
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Listings
 	--------------------------------------------------------------*/
@@ -2985,6 +3053,7 @@ HivePress
 			}
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Listing Categories
 	--------------------------------------------------------------*/
@@ -2995,6 +3064,7 @@ HivePress
 			}
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Listing Tags
 	--------------------------------------------------------------*/
@@ -3003,6 +3073,7 @@ HivePress
 			margin-bottom: 1.5rem;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Listing Packages
 	--------------------------------------------------------------*/
@@ -3019,10 +3090,12 @@ HivePress
 			.button--large;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Vendors
 	--------------------------------------------------------------*/
 	&-vendor {
+
 		&--view-block &__registered-date,
 		&--view-page &__registered-date {
 			color: @secondary-font-color;
@@ -3118,6 +3191,7 @@ HivePress
 			}
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Ratings
 	--------------------------------------------------------------*/
@@ -3131,6 +3205,7 @@ HivePress
 			color: @secondary-font-color;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Reviews
 	--------------------------------------------------------------*/
@@ -3155,6 +3230,7 @@ HivePress
 			white-space: normal;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Messages
 	--------------------------------------------------------------*/
@@ -3181,6 +3257,7 @@ HivePress
 			color: @secondary-font-color;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Memberships
 	--------------------------------------------------------------*/
@@ -3199,6 +3276,7 @@ HivePress
 	}
 
 	&-membership {
+
 		&--view-block &__expired-date,
 		&--view-block &__name,
 		&--view-block &__status {
@@ -3211,10 +3289,12 @@ HivePress
 			color: @secondary-font-color;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Orders
 	--------------------------------------------------------------*/
 	&-order {
+
 		&--page &__created-date,
 		&--page &__status,
 		&--page &__vendor {
@@ -3228,10 +3308,12 @@ HivePress
 		}
 	}
 }
+
 /*--------------------------------------------------------------
 WooCommerce
 --------------------------------------------------------------*/
 .woocommerce {
+
 	&-error,
 	&-info,
 	&-message {
@@ -3269,6 +3351,7 @@ WooCommerce
 			padding: 0.25rem;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Forms
 	--------------------------------------------------------------*/
@@ -3291,6 +3374,7 @@ WooCommerce
 			}
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Tables
 	--------------------------------------------------------------*/
@@ -3318,6 +3402,7 @@ WooCommerce
 			font-weight: bold;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Buttons
 	--------------------------------------------------------------*/
@@ -3335,6 +3420,7 @@ WooCommerce
 		}
 
 		&.alt {
+
 			&,
 			&:hover {
 				.button--primary;
@@ -3366,6 +3452,7 @@ WooCommerce
 	button.button,
 	input.button {
 		&--secondary {
+
 			&,
 			&:hover {
 				.button--secondary;
@@ -3375,6 +3462,7 @@ WooCommerce
 
 	button[type=submit],
 	input[type=submit] {
+
 		&,
 		&:hover {
 			.button--primary;
@@ -3390,6 +3478,7 @@ WooCommerce
 			}
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Widgets
 	--------------------------------------------------------------*/
@@ -3476,6 +3565,7 @@ WooCommerce
 			}
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Products
 	--------------------------------------------------------------*/
@@ -3530,7 +3620,7 @@ WooCommerce
 
 	div.product {
 		.product_meta {
-			> span {
+			>span {
 				display: block;
 				font-weight: bold;
 				color: @heading-font-color;
@@ -3560,6 +3650,7 @@ WooCommerce
 			line-height: inherit;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Checkout
 	--------------------------------------------------------------*/
@@ -3593,6 +3684,7 @@ WooCommerce
 	ul.order_details {
 		margin-bottom: 2rem;
 	}
+
 	/*--------------------------------------------------------------
 	Account
 	--------------------------------------------------------------*/
@@ -3604,6 +3696,7 @@ WooCommerce
 			list-style: none;
 		}
 	}
+
 	/*--------------------------------------------------------------
 	Pagination
 	--------------------------------------------------------------*/
@@ -3633,7 +3726,7 @@ WooCommerce
 		}
 	}
 
-	ul.products + &-pagination {
+	ul.products+&-pagination {
 		&:not(:first-child) {
 			margin-top: -1rem;
 		}
