@@ -152,14 +152,12 @@ final class HivePress extends Component {
 	 * @return array
 	 */
 	public function alter_page_sidebar_left( $template ) {
-		return hp\merge_trees(
+		return hivepress()->template->merge_blocks(
 			$template,
 			[
-				'blocks' => [
-					'page_sidebar' => [
-						'attributes' => [
-							'class' => [ 'site-sidebar' ],
-						],
+				'page_sidebar' => [
+					'attributes' => [
+						'class' => [ 'site-sidebar' ],
 					],
 				],
 			]
