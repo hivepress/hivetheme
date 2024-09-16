@@ -14,6 +14,7 @@ return [
 	'editor-styles',
 	'wp-block-styles',
 	'responsive-embeds',
+	'custom-line-height',
 	'align-wide',
 	'hivepress',
 	'wc-product-gallery-lightbox',
