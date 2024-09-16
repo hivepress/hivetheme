@@ -3,35 +3,35 @@ var hivetheme = {
 	/**
 	 * Gets component selector.
 	 */
-	getSelector: function(name) {
+	getSelector: function (name) {
 		return '[data-component="' + name + '"]';
 	},
 
 	/**
 	 * Gets component object.
 	 */
-	getComponent: function(name) {
+	getComponent: function (name) {
 		return jQuery(this.getSelector(name));
 	},
 };
 
-(function($) {
+(function ($) {
 	'use strict';
 
-	$(document).ready(function() {
+	$(document).ready(function () {
 
 		// Menu
-		hivetheme.getComponent('menu').each(function() {
+		hivetheme.getComponent('menu').each(function () {
 			var menu = $(this).children('ul');
 
-			$(this).find('li').each(function() {
+			$(this).find('li').each(function () {
 				var item = $(this);
 
 				if (item.children('ul').length) {
 					item.addClass('parent');
 
 					item.hoverIntent(
-						function() {
+						function () {
 							if (item.parent('ul').parent('li').hasClass('parent')) {
 								var menu = item.parent(),
 									offset = menu.offset().left + menu.outerWidth() * 2;
@@ -48,22 +48,22 @@ var hivetheme = {
 							item.addClass('active');
 							item.children('ul').slideDown(150);
 						},
-						function() {
-							item.children('ul').slideUp(150, function() {
+						function () {
+							item.children('ul').slideUp(150, function () {
 								item.removeClass('active');
 							});
 						}
 					);
 				}
 
-				item.children('a').on('click', function(e) {
+				item.children('a').on('click', function (e) {
 					if ($(this).attr('href') === '#') {
 						e.preventDefault();
 					}
 				});
 			});
 
-			menu.children('li').each(function() {
+			menu.children('li').each(function () {
 				if ($(this).offset().top > menu.offset().top) {
 					menu.addClass('wrap');
 
@@ -73,12 +73,12 @@ var hivetheme = {
 		});
 
 		// Burger
-		hivetheme.getComponent('burger').each(function() {
+		hivetheme.getComponent('burger').each(function () {
 			var menu = $(this).children('ul');
 
 			menu.css('top', $('#wpadminbar').height());
 
-			$(this).children('a').on('click', function(e) {
+			$(this).children('a').on('click', function (e) {
 				$('body').css('overflow-y', 'hidden');
 
 				menu.fadeIn(150);
@@ -86,7 +86,7 @@ var hivetheme = {
 				e.preventDefault();
 			});
 
-			menu.on('click', function(e) {
+			menu.on('click', function (e) {
 				if (!$(e.target).is('a') && !$(e.target).is('li.parent')) {
 					$('body').css('overflow-y', 'auto');
 
@@ -94,13 +94,13 @@ var hivetheme = {
 				}
 			});
 
-			menu.find('li').each(function() {
+			menu.find('li').each(function () {
 				var item = $(this);
 
 				if (item.children('ul').length) {
 					item.addClass('parent');
 
-					item.on('click', function(e) {
+					item.on('click', function (e) {
 						if ($(e.target).is(item)) {
 							item.toggleClass('active');
 							item.children('ul').slideToggle(150);
@@ -108,16 +108,22 @@ var hivetheme = {
 					});
 				}
 
-				item.children('a').on('click', function(e) {
-					if ($(this).attr('href') === '#') {
-						e.preventDefault();
+				item.children('a').on('click', function (e) {
+					var url = $(this).attr('href');
+
+					if (url.includes('#')) {
+						if (url === '#') {
+							e.preventDefault();
+						} else if (url === window.location.href || url.split('#')[0] === window.location.href || url.startsWith('#')) {
+							menu.trigger('click');
+						}
 					}
 				});
 			});
 		});
 	});
 
-	$('body').imagesLoaded(function() {
+	$('body').imagesLoaded(function () {
 
 		// Loader
 		hivetheme.getComponent('loader').fadeOut();
