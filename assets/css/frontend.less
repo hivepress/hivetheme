@@ -1088,12 +1088,29 @@ Header
 			}
 
 			@media only screen and (max-width: 74.99em) {
-				display: block;
+				display: flex;
+				align-items: center;
 			}
 
 			i {
 				font-size: 16px;
 				display: block;
+			}
+
+			small {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-width: 1.5rem;
+				min-height: 1.5rem;
+				padding: 0 0.5rem;
+				margin-left: 0.5rem;
+				border-radius: 9999px;
+				background-color: #ff5a5f;
+				color: #fff;
+				font-size: 80%;
+				line-height: 1;
+				white-space: nowrap;
 			}
 		}
 
@@ -1348,11 +1365,22 @@ Footer
 			justify-content: flex-end;
 			margin-bottom: -.5rem;
 
+			@media only screen and (max-width: 47.99em) {
+				justify-content: center;
+			}
+
 			li {
 				margin-bottom: 0.5rem;
 
-				&:not(:first-child) {
-					margin-left: 2rem;
+				@media only screen and (min-width: 48em) {
+					&:not(:first-child) {
+						margin-left: 2rem;
+					}
+				}
+
+				@media only screen and (max-width: 47.99em) {
+					margin-left: .75rem;
+					margin-right: .75rem;
 				}
 
 				a {

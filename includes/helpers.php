@@ -34,6 +34,29 @@ function prefix( $names ) {
 }
 
 /**
+ * Removes HiveTheme prefix.
+ *
+ * @param mixed $names Names to unprefix.
+ * @return mixed
+ */
+function unprefix( $names ) {
+	$unprefixed = '';
+
+	if ( is_array( $names ) ) {
+		$unprefixed = array_map(
+			function( $name ) {
+				return preg_replace( '/^ht_/', '', $name );
+			},
+			$names
+		);
+	} else {
+		$unprefixed = preg_replace( '/^ht_/', '', $names );
+	}
+
+	return $unprefixed;
+}
+
+/**
  * Sanitizes slug.
  *
  * @param string $text Text to sanitize.
@@ -121,6 +144,28 @@ function merge_arrays() {
 }
 
 /**
+ * Sorts array by a custom order.
+ *
+ * @param array $array Source array.
+ * @return array
+ */
+function sort_array( $array ) {
+	foreach ( $array as $key => $value ) {
+		if ( is_array( $value ) ) {
+
+			// @deprecated since version 1.3.0.
+			if ( isset( $value['order'] ) && is_int( $value['order'] ) ) {
+				$array[ $key ]['_order'] = $value['order'];
+			} elseif ( ! isset( $value['_order'] ) ) {
+				$array[ $key ]['_order'] = 0;
+			}
+		}
+	}
+
+	return wp_list_sort( $array, '_order', 'ASC', true );
+}
+
+/**
  * Creates class instance.
  *
  * @param string $class Class name.
@@ -139,6 +184,17 @@ function create_class_instance( $class, $args = [] ) {
 
 		return $instance;
 	}
+}
+
+/**
+ * Checks if object is a class instance.
+ *
+ * @param object $object Class object.
+ * @param string $class Class name.
+ * @return bool
+ */
+function is_class_instance( $object, $class ) {
+	return is_object( $object ) && strtolower( get_class( $object ) ) === ltrim( strtolower( $class ), '\\' );
 }
 
 /**

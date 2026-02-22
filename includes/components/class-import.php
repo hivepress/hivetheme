@@ -28,10 +28,10 @@ final class Import extends Component {
 		if ( is_admin() ) {
 
 			// Register theme demos.
-			add_filter( 'pt-ocdi/import_files', [ $this, 'register_demos' ] );
+			add_filter( 'ocdi/import_files', [ $this, 'register_demos' ] );
 
 			// Reset sidebar widgets.
-			add_action( 'pt-ocdi/widget_importer_before_widgets_import', [ $this, 'reset_widgets' ] );
+			add_action( 'ocdi/widget_importer_before_widgets_import', [ $this, 'reset_widgets' ] );
 		}
 
 		parent::__construct( $args );

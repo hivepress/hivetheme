@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HiveTheme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-06 10:48+0000\n"
+"POT-Creation-Date: 2026-02-22 14:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -74,6 +74,22 @@ msgstr ""
 msgid "Heading Font"
 msgstr ""
 
+#: includes/configs/meta-boxes.php:20
+msgid "Hide page title"
+msgstr ""
+
+#: includes/configs/meta-boxes.php:47
+msgid "Hide post header"
+msgstr ""
+
+#: includes/configs/meta-boxes.php:32 includes/configs/meta-boxes.php:59
+msgid "Hide site footer"
+msgstr ""
+
+#: includes/configs/meta-boxes.php:26 includes/configs/meta-boxes.php:53
+msgid "Hide site header"
+msgstr ""
+
 #. Author of the plugin
 msgid "HivePress"
 msgstr ""
@@ -92,6 +108,10 @@ msgstr ""
 msgid ""
 "If you want to start with the %1$s demo content, please follow <a "
 "href=\"%2$s\" target=\"_blank\">this screencast</a> to import it."
+msgstr ""
+
+#: includes/configs/meta-boxes.php:13 includes/configs/meta-boxes.php:40
+msgid "Layout"
 msgstr ""
 
 #: includes/configs/theme-mods.php:36

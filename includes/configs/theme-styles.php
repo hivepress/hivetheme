@@ -42,7 +42,8 @@ return [
 
 	'body_font'                  => [
 		'selector'   => '
-			body
+			body,
+			.mapboxgl-ctrl-geocoder
 		',
 
 		'properties' => [
