@@ -121,7 +121,7 @@ final class HivePress extends Component {
 	 * @return string
 	 */
 	public function hide_page_header( $output ) {
-		if ( is_wc_endpoint_url( 'orders' ) || is_wc_endpoint_url( 'view-order' ) ) {
+		if ( in_array( WC()->query->get_current_endpoint(), [ 'orders', 'view-order', 'subscriptions', 'view-subscription' ] ) ) {
 			$output = '';
 		}
 
@@ -132,7 +132,7 @@ final class HivePress extends Component {
 	 * Renders page title.
 	 */
 	public function render_page_title() {
-		if ( is_wc_endpoint_url( 'orders' ) || is_wc_endpoint_url( 'view-order' ) ) {
+		if ( in_array( WC()->query->get_current_endpoint(), [ 'orders', 'view-order', 'subscriptions', 'view-subscription' ] ) ) {
 			echo ( new Blocks\Part(
 				[
 					'path'    => 'page/page-title',
