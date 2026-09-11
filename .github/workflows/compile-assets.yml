@@ -2,7 +2,7 @@ name: Compile assets
 
 on:
   push:
-      branches-ignore: [ main, master ]
+    branches-ignore: [ main, master ]
 
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: Compile LESS
         uses: hivepress/action-compile-assets/less@v1.1.0
