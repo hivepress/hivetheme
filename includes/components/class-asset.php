@@ -88,7 +88,21 @@ final class Asset extends Component {
 
 		// Enqueue styles.
 		foreach ( $styles as $style ) {
-			wp_enqueue_style( $style['handle'], $style['src'], ht\get_array_value( $style, 'deps', [] ), ht\get_array_value( $style, 'version', hivetheme()->get_version() ) );
+
+			// Get version.
+			$version = ht\get_array_value( $style, 'version', hivetheme()->get_version() );
+
+			// Enqueue style.
+			wp_enqueue_style( $style['handle'], $style['src'], ht\get_array_value( $style, 'deps', [] ), $version );
+
+			if ( is_rtl() && ht\get_array_value( $style, 'rtl' ) ) {
+
+				// Get URL.
+				$src = dirname( $style['src'] ) . '/' . preg_replace( '/^([^.]+)/', '$1-rtl', basename( $style['src'] ) );
+
+				// Enqueue RTL style.
+				wp_enqueue_style( $style['handle'] . '-rtl', $src, [ $style['handle'] ], $version );
+			}
 		}
 	}
 
