@@ -33,5 +33,6 @@ return [
 		'handle' => 'hivetheme-core-frontend',
 		'src'    => hivetheme()->get_url() . '/assets/css/frontend.min.css',
 		'scope'  => [ 'frontend', 'editor' ],
+		'rtl'    => true,
 	],
 ];
