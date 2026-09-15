@@ -2195,12 +2195,13 @@ Posts
 				&:last-child {
 					margin-left: 0.4rem;
 					transition: transform @animation-duration;
+					transform: scaleX(1); /*rtl:scaleX(-1)*/
 				}
 			}
 
 			&:hover i {
 				&:last-child {
-					transform: translateX(5px);
+					transform: translateX(5px) scaleX(1); /*rtl:translateX(-5px) scaleX(-1)*/
 				}
 			}
 		}
@@ -2245,10 +2246,12 @@ Posts
 
 			&:first-child {
 				margin-right: 0.5rem;
+				transform: scaleX(1); /*rtl:scaleX(-1)*/
 			}
 
 			&:last-child {
 				margin-left: 0.5rem;
+				transform: scaleX(1); /*rtl:scaleX(-1)*/
 			}
 		}
 
@@ -2257,11 +2260,11 @@ Posts
 				color: @primary-font-color;
 
 				&:first-child {
-					transform: translateX(-5px; );
+					transform: translateX(-5px) scaleX(1); /*rtl:translateX(5px) scaleX(-1)*/
 				}
 
 				&:last-child {
-					transform: translateX(5px; );
+					transform: translateX(5px) scaleX(1); /*rtl:translateX(-5px) scaleX(-1)*/
 				}
 			}
 		}
