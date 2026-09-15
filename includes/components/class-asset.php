@@ -89,6 +89,14 @@ final class Asset extends Component {
 		// Enqueue styles.
 		foreach ( $styles as $style ) {
 			wp_enqueue_style( $style['handle'], $style['src'], ht\get_array_value( $style, 'deps', [] ), ht\get_array_value( $style, 'version', hivetheme()->get_version() ) );
+
+			if ( ht\get_array_value( $style, 'rtl' ) ) {
+				wp_style_add_data( $style['handle'], 'rtl', 'replace' );
+
+				if ( strpos( $style['src'], '.min.css' ) ) {
+					wp_style_add_data( $style['handle'], 'suffix', '.min' );
+				}
+			}
 		}
 	}
 

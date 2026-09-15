@@ -1,6 +1,6 @@
-/*--------------------------------------------------------------
-Variables
---------------------------------------------------------------*/
+//--------------------------------------------------------------
+// Variables
+//--------------------------------------------------------------
 @heading-font-color: rgba(15, 23, 39, .85);
 @heading-font-color-hover: rgb(15, 23, 39, 1);
 @body-font-color: rgba(15, 23, 39, .65);
@@ -17,23 +17,23 @@ Variables
 @box-shadow: 0 2px 4px 0 rgba(7, 36, 86, .075);
 @animation-duration: 0.25s;
 
-/*--------------------------------------------------------------
-Mixins
---------------------------------------------------------------*/
-.hp-image-container {
+//--------------------------------------------------------------
+// Mixins
+//--------------------------------------------------------------
+.hp-image-container() {
 	img {
 		display: block;
 		width: 100%;
 	}
 }
 
-.hp-center-container {
+.hp-center-container() {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.hp-clear-container {
+.hp-clear-container() {
 	&::after {
 		display: table;
 		clear: both;
@@ -41,7 +41,7 @@ Mixins
 	}
 }
 
-.hp-container-overlay {
+.hp-container-overlay() {
 	content: '';
 	display: block;
 	position: absolute;
@@ -51,7 +51,7 @@ Mixins
 	bottom: 0;
 }
 
-.hp-unstyled-list {
+.hp-unstyled-list() {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -61,7 +61,7 @@ Mixins
 	}
 }
 
-.hp-font-icon {
+.hp-font-icon() {
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 900;
 	font-style: normal;
@@ -73,7 +73,7 @@ Mixins
 	text-rendering: auto;
 }
 
-.hp-range-slider {
+.hp-range-slider() {
 	.ui {
 		&-slider-horizontal {
 			height: 5px;
