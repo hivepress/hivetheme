@@ -92,6 +92,10 @@ final class Asset extends Component {
 
 			if ( ht\get_array_value( $style, 'rtl' ) ) {
 				wp_style_add_data( $style['handle'], 'rtl', 'replace' );
+
+				if ( strpos( $style['src'], '.min.css' ) ) {
+					wp_style_add_data( $style['handle'], 'suffix', '.min' );
+				}
 			}
 		}
 	}
