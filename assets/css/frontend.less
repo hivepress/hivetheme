@@ -980,6 +980,7 @@ Header
 						content: '\f105';
 						color: @icon-color;
 						font-size: 16px;
+						transform: scaleX(1) /*rtl:scaleX(-1)*/;
 					}
 				}
 
@@ -1135,6 +1136,7 @@ Header
 						right: 0;
 						top: 0.2rem;
 						transition: transform @animation-duration;
+						transform: scaleX(1) /*rtl:scaleX(-1)*/;
 					}
 
 					&.active::after {
@@ -1687,6 +1689,7 @@ Widgets
 			font-size: 14px;
 			content: '\f054';
 			top: 0.3rem;
+			transform: scaleX(1) /*rtl:scaleX(-1)*/;
 		}
 	}
 }
@@ -2192,12 +2195,13 @@ Posts
 				&:last-child {
 					margin-left: 0.4rem;
 					transition: transform @animation-duration;
+					transform: scaleX(1) /*rtl:scaleX(-1)*/;
 				}
 			}
 
 			&:hover i {
 				&:last-child {
-					transform: translateX(5px);
+					transform: translateX(5px) scaleX(1) /*rtl:translateX(-5px) scaleX(-1)*/;
 				}
 			}
 		}
@@ -2242,10 +2246,12 @@ Posts
 
 			&:first-child {
 				margin-right: 0.5rem;
+				transform: scaleX(1) /*rtl:scaleX(-1)*/;
 			}
 
 			&:last-child {
 				margin-left: 0.5rem;
+				transform: scaleX(1) /*rtl:scaleX(-1)*/;
 			}
 		}
 
@@ -2254,11 +2260,11 @@ Posts
 				color: @primary-font-color;
 
 				&:first-child {
-					transform: translateX(-5px; );
+					transform: translateX(-5px) scaleX(1) /*rtl:translateX(5px) scaleX(-1)*/;
 				}
 
 				&:last-child {
-					transform: translateX(5px; );
+					transform: translateX(5px) scaleX(1) /*rtl:translateX(-5px) scaleX(-1)*/;
 				}
 			}
 		}
@@ -2396,6 +2402,7 @@ Comments
 			i {
 				font-size: 12px;
 				margin-right: 0.4rem;
+				transform: scaleX(1) /*rtl:scaleX(-1)*/;
 			}
 		}
 	}
@@ -2566,6 +2573,7 @@ Pagination
 			&::before {
 				.hp-font-icon;
 				font-size: 16px;
+				transform: scaleX(1) /*rtl:scaleX(-1)*/;
 			}
 
 			i {
