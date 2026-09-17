@@ -32,8 +32,11 @@ final class Import extends Component {
 		// Reset sidebar widgets.
 		add_action( 'ocdi/widget_importer_before_widgets_import', [ $this, 'reset_widgets' ] );
 
+		// Save content mapping.
+		add_action( 'ocdi/after_content_import_execution', [ $this, 'save_content_mapping' ] );
+
 		// Update customizer file.
-		add_action( 'ocdi/customizer_import_execution', [ $this, 'update_customizer' ], 5 );
+		add_action( 'ocdi/customizer_import_execution', [ $this, 'update_customizer_file' ], 5 );
 
 		parent::__construct( $args );
 	}
@@ -53,19 +56,28 @@ final class Import extends Component {
 	}
 
 	/**
+	 * Saves content mapping.
+	 */
+	public function save_content_mapping() {
+		$mapping = \OCDI\OneClickDemoImport::get_instance()->importer->get_importer_data()['mapping'] ?? [];
+
+		set_transient( ht\prefix( 'importer_mapping' ), $mapping, HOUR_IN_SECONDS );
+	}
+
+	/**
 	 * Updates customizer file.
 	 *
 	 * @param array $files Import files.
 	 */
-	public function update_customizer( $files ) {
+	public function update_customizer_file( $files ) {
 
 		// Check customizer file.
 		if ( empty( $files['customizer'] ) ) {
 			return;
 		}
 
-		// Get ID mapping.
-		$mapping = \OCDI\OneClickDemoImport::get_instance()->importer->get_importer_data()['mapping'] ?? [];
+		// Get content mapping.
+		$mapping = get_transient( ht\prefix( 'importer_mapping' ) );
 
 		if ( empty( $mapping['post'] ) && empty( $mapping['term_id'] ) ) {
 			return;
@@ -111,5 +123,8 @@ final class Import extends Component {
 
 		// Update customizer file.
 		@file_put_contents( $files['customizer'], serialize( $data ) );
+
+		// Delete content mapping.
+		delete_transient( ht\prefix( 'importer_mapping' ) );
 	}
 }
