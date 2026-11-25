@@ -107,8 +107,12 @@ var hivetheme = {
 				if (item.children('ul').length) {
 					item.addClass('parent');
 
+					if (item.hasClass('current-menu-ancestor')) {
+						item.addClass('active').children('ul').show();
+					}
+
 					item.on('click', function (e) {
-						if ($(e.target).is(item)) {
+						if ($(e.target).is(item) || $(e.target).is(item.children('a[href="#"]'))) {
 							item.toggleClass('active');
 							item.children('ul').slideToggle(150);
 						}
