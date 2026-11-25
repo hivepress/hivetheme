@@ -58,6 +58,7 @@ return [
 		'selector'   => '
 			.header-navbar__menu ul li.active > a,
 			.header-navbar__menu ul li.current-menu-item > a,
+			.header-navbar__burger ul li.current-menu-item > a,
 			.header-navbar__menu ul li a:hover,
 			.footer-navbar__menu ul li a:hover,
 			.hp-menu--tabbed .hp-menu__item a:hover,

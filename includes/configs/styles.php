@@ -24,11 +24,13 @@ return [
 	'fontawesome'       => [
 		'handle' => 'fontawesome',
 		'src'    => hivetheme()->get_url() . '/assets/css/fontawesome/fontawesome.min.css',
+		'scope'  => [ 'frontend', 'editor' ],
 	],
 
 	'fontawesome_solid' => [
 		'handle' => 'fontawesome-solid',
 		'src'    => hivetheme()->get_url() . '/assets/css/fontawesome/solid.min.css',
+		'scope'  => [ 'frontend', 'editor' ],
 	],
 
 	'core_frontend'     => [

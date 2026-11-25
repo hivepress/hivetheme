@@ -79,14 +79,14 @@
 			height: 5px;
 			border: none;
 			background-color: transparent;
-			margin: 9px 14px 9px 9px;
+			margin: 9px 14px 9px 9px /*rtl:ignore*/;
 
 			&::before {
 				position: absolute;
 				top: 0;
-				right: -14px;
+				right: -14px /*rtl:ignore*/;
 				bottom: 0;
-				left: -9px;
+				left: -9px /*rtl:ignore*/;
 				display: block;
 				content: '';
 				border-radius: 9999px;
@@ -117,7 +117,7 @@
 
 			&::before {
 				top: 7px;
-				left: 7px;
+				left: 7px /*rtl:ignore*/;
 				width: 7px;
 				height: 7px;
 				border: 1px solid @border-color-hover;
@@ -127,10 +127,10 @@
 
 			&::after {
 				top: 7px;
-				left: 10px;
+				left: 10px /*rtl:ignore*/;
 				width: 0;
 				height: 7px;
-				border-left: 1px solid @border-color-hover;
+				border-left: 1px solid @border-color-hover /*rtl:ignore*/;
 			}
 		}
 	}
@@ -337,6 +337,7 @@ pre {
 	font-size: 1rem;
 	line-height: 1.875;
 	padding: 1rem 1.5rem;
+	tab-size: 4;
 
 	&:not(:first-child) {
 		margin-top: 1rem;
@@ -349,6 +350,11 @@ pre {
 	code {
 		background-color: transparent;
 		padding: 0;
+	}
+
+	&.wp-block-code code {
+		white-space: inherit;
+		overflow-wrap: normal;
 	}
 }
 
@@ -1146,6 +1152,10 @@ Header
 
 				a {
 					color: inherit;
+				}
+
+				&.current-menu-item>a {
+					color: @primary-font-color;
 				}
 
 				ul {
