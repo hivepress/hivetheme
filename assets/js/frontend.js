@@ -13,6 +13,13 @@ var hivetheme = {
 	getComponent: function (name) {
 		return jQuery(this.getSelector(name));
 	},
+
+	/**
+	 * Checks if URL is safe to open.
+	 */
+	isSafeURL: function (url) {
+		return ['http:', 'https:'].includes(new URL(url, window.location.href).protocol);
+	},
 };
 
 (function ($) {
