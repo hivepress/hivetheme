@@ -211,6 +211,9 @@ final class Asset extends Component {
 					// Add responsive wrapper.
 					if ( $ratio ) {
 						$html = '<figure class="wp-block-embed wp-has-aspect-ratio wp-embed-aspect-' . esc_attr( $ratio ) . '"><div class="wp-block-embed__wrapper">' . $html . '</div></figure>';
+
+						// Enqueue embed styles.
+						wp_enqueue_style( 'wp-block-embed' );
 					}
 				}
 			}
